@@ -1,0 +1,16 @@
+/private/var/folders/w_/y1rv892x69sfgdgkjnwhng0c0000gn/T/AppTranslocation/247E7314-4581-44B2-B990-0DCE2D4C33C3/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/private/var/folders/w_/y1rv892x69sfgdgkjnwhng0c0000gn/T/AppTranslocation/247E7314-4581-44B2-B990-0DCE2D4C33C3/d/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S /Users/airamxl9/git/juezED -B /Users/airamxl9/git/juezED/cmake-build-debug
+-- The C compiler identification is AppleClang 15.0.0.15000309
+-- The CXX compiler identification is AppleClang 15.0.0.15000309
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /Library/Developer/CommandLineTools/usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/airamxl9/git/juezED/cmake-build-debug

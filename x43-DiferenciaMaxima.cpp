@@ -173,10 +173,12 @@ pair<int, int> maximaDifAux (const BinTree<int> & t) {
     else {
 
         int mejorResultado = 0;
-   
+
         if(!t.left().empty()) mejorResultado = max (abs (t.root()-t.left().root()), mejorResultado);
+
         auto[hojaIzquierda, maximaIzq] = maximaDifAux(t.left());
-        if(!t.right().empty()) mejorResultado = max (abs (hojaIzquierda-t.right().root()), mejorResultado);
+        if(!t.right().empty() && t.left().empty()) mejorResultado = max (abs (t.root()-t.right().root()), mejorResultado);
+        else if(!t.right().empty()) mejorResultado = max (abs (hojaIzquierda-t.right().root()), mejorResultado);
         auto [hojaDerecha, maximaDer] = maximaDifAux(t.right());
 
         int dev = t.root();
@@ -192,7 +194,7 @@ pair<int, int> maximaDifAux (const BinTree<int> & t) {
 
 int maxima_diferencia(const BinTree<int> &tree) {
 
-   return maximaDifAux(tree).second;
+    return maximaDifAux(tree).second;
 
 }
 
@@ -220,4 +222,3 @@ int main() {
 #endif
     return 0;
 }
-
