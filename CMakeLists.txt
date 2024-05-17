@@ -3,4 +3,4 @@ project(DOMJUDGE_ED)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(DOMJUDGE_ED x53.cpp)
+add_executable(DOMJUDGE_ED x55.cpp)
