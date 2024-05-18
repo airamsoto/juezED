@@ -26,7 +26,7 @@ using namespace std;
 
 bool tratar_caso() {
     string aux;
-    
+    //probar con un mapa de set string int y otro set de strings para los alumnos
     unordered_map<string, set<string>> competiciones;
     set<string> vetados;
     cin >> aux;
@@ -59,8 +59,10 @@ bool tratar_caso() {
     for (const auto& pair : competiciones) {
         resultados.emplace_back(pair.first, pair.second.size());
     }
+
+    // Ordenar el vector de resultados según el tamaño del conjunto de alumnos
     sort(resultados.begin(), resultados.end(), [](const auto& a, const auto& b) {
-        return (a.second > b.second || (a.second == b.second && a.first[0] < b.first[0]));
+        return (a.second > b.second || (a.second == b.second && a.first[0] < b.first[0] )); // Orden descendente
     });
     for (const auto& result : resultados) {
         cout << result.first << " " << result.second << endl;

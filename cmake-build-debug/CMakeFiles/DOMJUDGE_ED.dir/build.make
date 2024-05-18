@@ -68,28 +68,28 @@ include CMakeFiles/DOMJUDGE_ED.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/DOMJUDGE_ED.dir/flags.make
 
-CMakeFiles/DOMJUDGE_ED.dir/x58.cpp.obj: CMakeFiles/DOMJUDGE_ED.dir/flags.make
-CMakeFiles/DOMJUDGE_ED.dir/x58.cpp.obj: C:/Users/airam/git/juezED/x58.cpp
-CMakeFiles/DOMJUDGE_ED.dir/x58.cpp.obj: CMakeFiles/DOMJUDGE_ED.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\airam\git\juezED\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DOMJUDGE_ED.dir/x58.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DOMJUDGE_ED.dir/x58.cpp.obj -MF CMakeFiles\DOMJUDGE_ED.dir\x58.cpp.obj.d -o CMakeFiles\DOMJUDGE_ED.dir\x58.cpp.obj -c C:\Users\airam\git\juezED\x58.cpp
+CMakeFiles/DOMJUDGE_ED.dir/x59.cpp.obj: CMakeFiles/DOMJUDGE_ED.dir/flags.make
+CMakeFiles/DOMJUDGE_ED.dir/x59.cpp.obj: C:/Users/airam/git/juezED/x59.cpp
+CMakeFiles/DOMJUDGE_ED.dir/x59.cpp.obj: CMakeFiles/DOMJUDGE_ED.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\airam\git\juezED\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/DOMJUDGE_ED.dir/x59.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DOMJUDGE_ED.dir/x59.cpp.obj -MF CMakeFiles\DOMJUDGE_ED.dir\x59.cpp.obj.d -o CMakeFiles\DOMJUDGE_ED.dir\x59.cpp.obj -c C:\Users\airam\git\juezED\x59.cpp
 
-CMakeFiles/DOMJUDGE_ED.dir/x58.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DOMJUDGE_ED.dir/x58.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\airam\git\juezED\x58.cpp > CMakeFiles\DOMJUDGE_ED.dir\x58.cpp.i
+CMakeFiles/DOMJUDGE_ED.dir/x59.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/DOMJUDGE_ED.dir/x59.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\airam\git\juezED\x59.cpp > CMakeFiles\DOMJUDGE_ED.dir\x59.cpp.i
 
-CMakeFiles/DOMJUDGE_ED.dir/x58.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DOMJUDGE_ED.dir/x58.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\airam\git\juezED\x58.cpp -o CMakeFiles\DOMJUDGE_ED.dir\x58.cpp.s
+CMakeFiles/DOMJUDGE_ED.dir/x59.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/DOMJUDGE_ED.dir/x59.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\airam\git\juezED\x59.cpp -o CMakeFiles\DOMJUDGE_ED.dir\x59.cpp.s
 
 # Object files for target DOMJUDGE_ED
 DOMJUDGE_ED_OBJECTS = \
-"CMakeFiles/DOMJUDGE_ED.dir/x58.cpp.obj"
+"CMakeFiles/DOMJUDGE_ED.dir/x59.cpp.obj"
 
 # External object files for target DOMJUDGE_ED
 DOMJUDGE_ED_EXTERNAL_OBJECTS =
 
-DOMJUDGE_ED.exe: CMakeFiles/DOMJUDGE_ED.dir/x58.cpp.obj
+DOMJUDGE_ED.exe: CMakeFiles/DOMJUDGE_ED.dir/x59.cpp.obj
 DOMJUDGE_ED.exe: CMakeFiles/DOMJUDGE_ED.dir/build.make
 DOMJUDGE_ED.exe: CMakeFiles/DOMJUDGE_ED.dir/linklibs.rsp
 DOMJUDGE_ED.exe: CMakeFiles/DOMJUDGE_ED.dir/objects1.rsp
