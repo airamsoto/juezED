@@ -56,10 +56,10 @@ RM = "C:\Program Files\JetBrains\CLion 2022.3.2\bin\cmake\win\x64\bin\cmake.exe"
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\airam\git\DOMJUDGE_ED
+CMAKE_SOURCE_DIR = C:\Users\airam\git\juezED
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\airam\git\DOMJUDGE_ED\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\airam\git\juezED\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\airam\git\DOMJUDGE_ED\cmake-build-debug\CMakeFiles C:\Users\airam\git\DOMJUDGE_ED\cmake-build-debug\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\airam\git\juezED\cmake-build-debug\CMakeFiles C:\Users\airam\git\juezED\cmake-build-debug\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\airam\git\DOMJUDGE_ED\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\airam\git\juezED\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -128,29 +128,29 @@ DOMJUDGE_ED/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/build
 .PHONY : DOMJUDGE_ED/fast
 
-x43-DiferenciaMaxima.obj: x43-DiferenciaMaxima.cpp.obj
-.PHONY : x43-DiferenciaMaxima.obj
+x58.obj: x58.cpp.obj
+.PHONY : x58.obj
 
 # target to build an object file
-x43-DiferenciaMaxima.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x43-DiferenciaMaxima.cpp.obj
-.PHONY : x43-DiferenciaMaxima.cpp.obj
+x58.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x58.cpp.obj
+.PHONY : x58.cpp.obj
 
-x43-DiferenciaMaxima.i: x43-DiferenciaMaxima.cpp.i
-.PHONY : x43-DiferenciaMaxima.i
+x58.i: x58.cpp.i
+.PHONY : x58.i
 
 # target to preprocess a source file
-x43-DiferenciaMaxima.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x43-DiferenciaMaxima.cpp.i
-.PHONY : x43-DiferenciaMaxima.cpp.i
+x58.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x58.cpp.i
+.PHONY : x58.cpp.i
 
-x43-DiferenciaMaxima.s: x43-DiferenciaMaxima.cpp.s
-.PHONY : x43-DiferenciaMaxima.s
+x58.s: x58.cpp.s
+.PHONY : x58.s
 
 # target to generate assembly for a file
-x43-DiferenciaMaxima.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x43-DiferenciaMaxima.cpp.s
-.PHONY : x43-DiferenciaMaxima.cpp.s
+x58.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x58.cpp.s
+.PHONY : x58.cpp.s
 
 # Help Target
 help:
@@ -161,9 +161,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... DOMJUDGE_ED
-	@echo ... x43-DiferenciaMaxima.obj
-	@echo ... x43-DiferenciaMaxima.i
-	@echo ... x43-DiferenciaMaxima.s
+	@echo ... x58.obj
+	@echo ... x58.i
+	@echo ... x58.s
 .PHONY : help
 
 
