@@ -36,7 +36,7 @@ void ListLinkedSingle::push_back(const int &elem) {
         head = new_node;
     } else {
         Node *current = head;
-        while (current->next != nullptr) {
+        while (current->next != nullptr ) {
             current = current->next;
         }
         current->next = new_node;
@@ -51,10 +51,11 @@ ListLinkedSingle l1, l2;
         l1.push_back(value);
     }
     l1.escamochar(l2);
-    cout << "L2 ";
-    l2.display();
     cout << "L1 ";
     l1.display();
+    cout << "L2 ";
+    l2.display();
+
 
 }
 void ListLinkedSingle::display() {
@@ -96,43 +97,63 @@ void ListLinkedSingle::pop_front() {
 }
 
 void ListLinkedSingle::escamochar(ListLinkedSingle &dest) {
-    Node *current = head;
-    Node *prev = nullptr;
+    // Mover los negativos del principio
+    while (head != nullptr && head->value < 0) {
+        Node* temp = head;
+        head = head->next;
 
-    // Encuentra el primer nodo con valor no negativo
-    while (current != nullptr && current->value < 0) {
-        prev = current;
-        current = current->next;
+        // Añadir el nodo eliminado a la lista destino al final
+        temp->next = nullptr;
+        if (dest.head == nullptr) {
+            dest.push_front(temp)
+        } else {
+            Node* dest_current = dest.head;
+            while (dest_current->next != nullptr) {
+                dest_current = dest_current->next;
+            }
+            dest_current->next = temp;
+        }
     }
 
-    // Si toda la lista es negativa, no se hace nada
-    if (current == nullptr) {
+    // Si la lista se vacía después de eliminar los negativos iniciales
+    if (head == nullptr) {
         return;
     }
 
-    // Encuentra el último nodo con valor no negativo
-    Node *lastNonNegative = nullptr;
+    // Encontrar el último nodo no negativo y mover los negativos al final
+    Node* current = head;
+    Node* last_non_negative = nullptr;
+
     while (current != nullptr) {
-        if (current->value >= 0 || (current->next != nullptr && current->next->value >= 0)) {
-            dest.push_back(current->value);
-            if (prev == nullptr) {
-                head = current->next;
-            } else {
-                prev->next = current->next;
-            }
-        } else {
-            prev = current;
+        if (current->value >= 0) {
+            last_non_negative = current;
         }
-        lastNonNegative = current;
         current = current->next;
     }
 
-    // Si la lista original estaba vacía, actualiza el puntero head
-    if (head == nullptr) {
-        head = lastNonNegative;
+    // Eliminar los negativos del final y moverlos a la lista dest
+    if (last_non_negative != nullptr && last_non_negative->next != nullptr) {
+        current = last_non_negative->next;
+        last_non_negative->next = nullptr;
+
+        while (current != nullptr) {
+            Node* temp = current;
+            current = current->next;
+
+            // Añadir el nodo eliminado a la lista destino al final
+            temp->next = nullptr;
+            if (dest.head == nullptr) {
+                dest.head = temp;
+            } else {
+                Node* dest_current = dest.head;
+                while (dest_current->next != nullptr) {
+                    dest_current = dest_current->next;
+                }
+                dest_current->next = temp;
+            }
+        }
     }
 }
-
 
 
 
