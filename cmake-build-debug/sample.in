@@ -1,7 +1,31 @@
-puntuacion Pedro
-alta Pedro Juan
-puntuacion Pedro
-aprobar Pedro
-puntuacion Pedro
-examen Juan 0
+ChenXin
+anyadir_rasgo ZhouJian Hombre
+anyadir_rasgo ChenXin Mujer
+anyadir_rasgo LiKun Gafas
+anyadir_rasgo ChenXin LlevaSombrero
+anyadir_rasgo LiKun Bigote
+anyadir_rasgo ZhouJian LlevaSombrero
+anyadir_rasgo ZhouJian Bigote
+anyadir_rasgo LiKun Calvo
+nuevo_jugador Wolfgang
+nuevo_jugador Markus
+anyadir_rasgo ChenXin PeloMoreno
+sospechosos
+jugador_descarta Markus Gafas
+jugador_enganyado Markus
+jugador_descarta Markus LlevaSombrero
+jugador_enganyado Markus
+puede_detener_culpable Wolfgang
+jugador_descarta Wolfgang Bigote
+puede_detener_culpable Wolfgang
+FIN
+LiKun
+anyadir_rasgo ZhouJian Hombre
+anyadir_rasgo LiKun Gafas
+nuevo_jugador Peter
+jugador_descarta Peter Gafas
+nuevo_jugador Peter
+puede_detener_culpable Peter
+puede_detener_culpable Martha
+jugador_enganyado Peter
 FIN

@@ -46,8 +46,8 @@ cmake_ninja_workdir = /Users/airamxl9/git/juezED/cmake-build-debug/
 
 build cmake_object_order_depends_target_DOMJUDGE_ED: phony || CMakeFiles/DOMJUDGE_ED.dir
 
-build CMakeFiles/DOMJUDGE_ED.dir/x63.cpp.o: CXX_COMPILER__DOMJUDGE_ED_Debug /Users/airamxl9/git/juezED/x63.cpp || cmake_object_order_depends_target_DOMJUDGE_ED
-  DEP_FILE = CMakeFiles/DOMJUDGE_ED.dir/x63.cpp.o.d
+build CMakeFiles/DOMJUDGE_ED.dir/x64.cpp.o: CXX_COMPILER__DOMJUDGE_ED_Debug /Users/airamxl9/git/juezED/x64.cpp || cmake_object_order_depends_target_DOMJUDGE_ED
+  DEP_FILE = CMakeFiles/DOMJUDGE_ED.dir/x64.cpp.o.d
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -std=gnu++14
   OBJECT_DIR = CMakeFiles/DOMJUDGE_ED.dir
   OBJECT_FILE_DIR = CMakeFiles/DOMJUDGE_ED.dir
@@ -60,7 +60,7 @@ build CMakeFiles/DOMJUDGE_ED.dir/x63.cpp.o: CXX_COMPILER__DOMJUDGE_ED_Debug /Use
 #############################################
 # Link the executable DOMJUDGE_ED
 
-build DOMJUDGE_ED: CXX_EXECUTABLE_LINKER__DOMJUDGE_ED_Debug CMakeFiles/DOMJUDGE_ED.dir/x63.cpp.o
+build DOMJUDGE_ED: CXX_EXECUTABLE_LINKER__DOMJUDGE_ED_Debug CMakeFiles/DOMJUDGE_ED.dir/x64.cpp.o
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk
   OBJECT_DIR = CMakeFiles/DOMJUDGE_ED.dir
   POST_BUILD = :
