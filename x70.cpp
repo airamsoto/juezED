@@ -38,6 +38,10 @@ public:
             throw domain_error("Jugador existente");
         }
         jugadores[nombre];
+        if (sospechosos_ordenados.size() < 2) {
+            ganadoresPotenciales.push_back(nombre);
+            mapa_potenciales[nombre] = --ganadoresPotenciales.end();
+        }
 
     }
 
@@ -50,7 +54,18 @@ public:
             for (const auto &sospechoso: rasgos_sospechosos[rasgo]) {
                 jugadores[jugador].insert(sospechoso);
             }
+            bool puede = (sospechosos_ordenados.size()  == jugadores[jugador].size() + 1) &&
+                         jugadores[jugador].count(culpable) == 0;
+            bool noPuede = (sospechosos_ordenados.size() != jugadores[jugador].size() + 1) &&
+                           jugadores[jugador].count(culpable) == 1;;
 
+            if (puede && mapa_potenciales.find(jugador) == mapa_potenciales.end()) {
+                ganadoresPotenciales.push_back(jugador);
+                mapa_potenciales[jugador] = --ganadoresPotenciales.end();
+            } else if (noPuede && mapa_potenciales.find(jugador) != mapa_potenciales.end()) {
+                ganadoresPotenciales.erase(mapa_potenciales[jugador]);
+                mapa_potenciales.erase(jugador);
+            }
         }
     }
 
@@ -69,6 +84,18 @@ public:
         throw domain_error("Jugador no existente");
     }
 
+    vector<string> ganadores_potenciales() const {
+        return vector<string>(ganadoresPotenciales.begin(), ganadoresPotenciales.end());
+
+    }
+
+    void imprime_lista(const vector<string> &lista) {
+        bool primero = true;
+        for (const auto &s: lista) {
+            cout << (primero ? "" : " ") << s;
+            primero = false;
+        }
+    }
 
 private:
     string culpable;
@@ -76,6 +103,8 @@ private:
     unordered_map<string, unordered_set<string>> jugadores;
     unordered_map<string, unordered_set<string>> rasgos_sospechosos;
     set<string> sospechosos_ordenados;
+    list<string> ganadoresPotenciales;
+    unordered_map<string, list<string>::iterator> mapa_potenciales;
 };
 
 bool tratar_caso() {
@@ -124,7 +153,9 @@ bool tratar_caso() {
                 cin >> nombre;
                 bool puede = mp.puede_detener_culpable(nombre);
                 cout << nombre << (puede ? "" : " no") << " puede detener al culpable" << endl;
-
+            } else if (comando == "ganadores_potenciales") {
+                mp.imprime_lista(mp.ganadores_potenciales());
+                cout << endl;
             }
         } catch (const exception &e) {
             cout << "ERROR: " << e.what() << endl;

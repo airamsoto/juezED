@@ -77,7 +77,8 @@ private:
     unordered_map<string, string> alumno_a_profesor;
 };
 
-bool tratar_caso(Autoescuela &ae) {
+bool tratar_caso() {
+    Autoescuela ae;
     string operacion;
     cin >> operacion;
     if (cin.eof()) return false;
@@ -136,8 +137,8 @@ int main() {
     auto cinbuf = std::cin.rdbuf(in.rdbuf());
 #endif
 
-    Autoescuela ae;
-    while (tratar_caso(ae)) {}
+
+    while (tratar_caso()) {}
 
 #ifndef DOMJUDGE
     std::cin.rdbuf(cinbuf);
