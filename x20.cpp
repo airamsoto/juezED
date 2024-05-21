@@ -8,19 +8,19 @@
   esta semana: pilas, colas, o dobles colas.
 
   En lugar de utilizar las implementaciones vistas en clase, utilizad las que
-  vienen implementadas en la biblioteca est√°ndar de C++, que son las
+  vienen implementadas en la biblioteca est·ndar de C++, que son las
   siguientes:
 
   - queue, definida en el fichero de cabecera <queue>
-    Documentaci√≥n: https://en.cppreference.com/w/cpp/container/queue
+    DocumentaciÛn: https://en.cppreference.com/w/cpp/container/queue
 
   - stack, definida en el fichero de cabecera <stack>
-    Documentaci√≥n: https://en.cppreference.com/w/cpp/container/stack
+    DocumentaciÛn: https://en.cppreference.com/w/cpp/container/stack
 
   - deque, definida en el fichero de cabecera <deque>
-    Documentaci√≥n: https://en.cppreference.com/w/cpp/container/deque
+    DocumentaciÛn: https://en.cppreference.com/w/cpp/container/deque
 
-  A√±ade los #include con los ficheros de cabecera del TAD o los TADs que
+  AÒade los #include con los ficheros de cabecera del TAD o los TADs que
   vais a utilizar.
 */
 
@@ -39,12 +39,12 @@ template<
     class Container = std::deque<T>
 > class queue;
 
-// Implementa aqu√≠ la funci√≥n para tratar UN caso de prueba. La funci√≥n
+// Implementa aquÌ la funciÛn para tratar UN caso de prueba. La funciÛn
 // devuelve false si, en lugar de encontrarse con un caso de prueba, se ha
 // topado con la marca de fin de entrada (0 0). Por el contrario, si se ha
 // encontrado con un caso de prueba y lo ha procesado, devuelve true.
 
-// No olvides indicar y justificar el coste de la funci√≥n.
+// No olvides indicar y justificar el coste de la funciÛn.
 
 bool tratar_caso() {
     std::queue<int> cola;
@@ -85,7 +85,7 @@ int main() {
 
     while (tratar_caso()) {}
 
-    // Comenta esto tambi√©n si has comentado lo anterior.
+    // Comenta esto tambiÈn si has comentado lo anterior.
 #ifndef DOMJUDGE
     std::cin.rdbuf(cinbuf);
 #endif
