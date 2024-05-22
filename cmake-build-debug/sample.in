@@ -1,30 +1,46 @@
-nuevo_estado Arizona 11
-   nuevo_estado RhodeIsland 4
-   nuevo_estado California 55
-   sumar_votos Arizona REP 1000
-   sumar_votos Arizona DEM 500
-   ganador_en Arizona
-   sumar_votos California DEM 1000
-   sumar_votos RhodeIsland REP 200
-   ganador_en California
-   sumar_votos Arizona DEM 600
-   ganador_en Arizona
-   resultados
-   FIN
-   nuevo_estado Nevada 6
-   sumar_votos Arizona P1 10
-   sumar_votos Nevada P2 200
-   ganador_en Nevada
-   ganador_en Arizona
-   FIN
-   nuevo_estado Illinois 20
-   sumar_votos Illinois P1 10
-   ganador_en Illinois
-   resultados
-   sumar_votos Illinois P2 20
-   ganador_en Illinois
-   resultados
-   sumar_votos Illinois P3 30
-   ganador_en Illinois
-   resultados
-   FIN
+nuevo_estudiante 600F 5
+grupo_estudiante 600F
+promocionar 600F
+grupo_estudiante 600F
+novato 6
+promocionar 600F
+graduados
+nuevo_estudiante 100H 1
+nuevo_estudiante 200I 2
+nuevo_estudiante 300J 3
+nuevo_estudiante 400K 4
+nuevo_estudiante 500L 5
+nuevo_estudiante 600M 6
+promocionar 100H
+promocionar 200I
+promocionar 300J
+promocionar 400K
+promocionar 500L
+promocionar 600M
+grupo_estudiante 100H
+grupo_estudiante 200I
+grupo_estudiante 300J
+grupo_estudiante 400K
+grupo_estudiante 500L
+grupo_estudiante 600M
+graduados
+novato 1
+novato 2
+novato 3
+novato 4
+novato 5
+novato 6
+promocionar 100H
+promocionar 200I
+promocionar 300J
+promocionar 400K
+promocionar 500L
+promocionar 600M
+grupo_estudiante 100H
+grupo_estudiante 200I
+grupo_estudiante 300J
+grupo_estudiante 400K
+grupo_estudiante 500L
+grupo_estudiante 600M
+graduados
+FIN
