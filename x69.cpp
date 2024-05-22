@@ -77,11 +77,13 @@ public:
     }
 
     std::string novato(int grupo) const {
-        if (grupo > 0 && grupo <= 6)
+        if (grupo > 0 && grupo <= 6) {
             if (academia.count(grupo) && !academia.at(grupo).empty()) {
                 return academia.at(grupo).back();
-            }
-        throw std::domain_error("Grupo vacio");
+            } else throw std::domain_error("Grupo vacio");
+        } else  throw std::domain_error("Grupo incorrecto");
+
+
     }
 
 

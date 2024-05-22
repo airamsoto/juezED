@@ -105,7 +105,6 @@ void ListLinkedSingle::escamochar(ListLinkedSingle &dest) {
         // Añadir el nodo eliminado a la lista destino al final
         temp->next = nullptr;
         if (dest.head == nullptr) {
-            dest.push_front(temp)
         } else {
             Node* dest_current = dest.head;
             while (dest_current->next != nullptr) {

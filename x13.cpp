@@ -192,40 +192,40 @@ void ListLinkedSingle::display(std::ostream &out) const {
 
 
 void ListLinkedSingle::replicate(const ListLinkedSingle &ys) {
-    Node *current_xs = head;
+    Node *current_xs = this->head;
     Node *current_ys = ys.head;
-    Node *prev_xs = nullptr;
+    Node *prev = nullptr;
 
     while (current_xs != nullptr && current_ys != nullptr) {
-        int multiplicity = current_ys->value;
+        int multiplicador = current_ys->value;
 
-        if (multiplicity == 0) {
-            // Eliminar el nodo
-            Node *temp = current_xs;
-            if (prev_xs == nullptr) {
+        if (multiplicador == 0) {
+            if (prev == nullptr) {
+                Node *temp = current_xs;
                 head = current_xs->next;
+                current_xs = current_xs->next;;
+                delete temp;
             } else {
-                prev_xs->next = current_xs->next;
+                Node *temp = current_xs;
+                prev->next = current_xs->next;
+                current_xs = current_xs->next;
+                delete temp;
             }
-            current_xs = current_xs->next;
-            delete temp;
-        } else if (multiplicity == 1) {
-            // No hacer nada, solo avanzar
-            prev_xs = current_xs;
-            current_xs = current_xs->next;
         } else {
-            // Replicar el nodo
-            Node *last = current_xs;
-            for (int i = 1; i < multiplicity; ++i) {
-                Node *new_node = new Node{current_xs->value, last->next};
-                last->next = new_node;
-                last = new_node;
+            prev = current_xs;
+            Node *next = current_xs->next;
+            for (int i = 1; i < multiplicador; ++i) {
+                Node *new_node = new Node{current_xs->value, next};
+                prev->next = new_node;
+                prev = new_node;
             }
-            prev_xs = last;
-            current_xs = last->next;
+            current_xs = next;
         }
+
         current_ys = current_ys->next;
     }
+
+
 }
 
 void tratar_caso() {
@@ -234,11 +234,11 @@ void tratar_caso() {
     cin >> numElems;
     for (int i = 0; i < numElems; ++i) {
         cin >> value;
-        xs.push_back(value);
+        xs.push_front(value);
     }
     for (int i = 0; i < numElems; ++i) {
         cin >> value;
-        ys.push_back(value);
+        ys.push_front(value);
     }
     xs.replicate(ys);
     xs.display();

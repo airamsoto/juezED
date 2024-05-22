@@ -104,16 +104,14 @@ using namespace std;
 
 
 int area_mayor_sin_barreras(const BinTree<bool> &tree) {
-    // Implementa aquí la función pedida. No puedes
-    // modificar la cabecera, pero puedes apoyarte en funciones
-    // auxiliares, si necesitas devolver más de un resultado.
+
     if (tree.empty()) return 0;
     else {
 
         int nodosIzquierda = area_mayor_sin_barreras(tree.left());
         int nodosDerecha = area_mayor_sin_barreras(tree.right());
-        int actual = nodosDerecha +nodosIzquierda;
-
+        int actual = nodosDerecha + nodosIzquierda;
+        q
         if(!tree.left().empty()  && tree.left().root() == 1) {
             actual-=nodosIzquierda;
         }
