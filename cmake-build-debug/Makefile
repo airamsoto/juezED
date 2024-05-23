@@ -128,29 +128,29 @@ DOMJUDGE_ED/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/build
 .PHONY : DOMJUDGE_ED/fast
 
-x59.obj: x59.cpp.obj
-.PHONY : x59.obj
+x71.obj: x71.cpp.obj
+.PHONY : x71.obj
 
 # target to build an object file
-x59.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x59.cpp.obj
-.PHONY : x59.cpp.obj
+x71.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x71.cpp.obj
+.PHONY : x71.cpp.obj
 
-x59.i: x59.cpp.i
-.PHONY : x59.i
+x71.i: x71.cpp.i
+.PHONY : x71.i
 
 # target to preprocess a source file
-x59.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x59.cpp.i
-.PHONY : x59.cpp.i
+x71.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x71.cpp.i
+.PHONY : x71.cpp.i
 
-x59.s: x59.cpp.s
-.PHONY : x59.s
+x71.s: x71.cpp.s
+.PHONY : x71.s
 
 # target to generate assembly for a file
-x59.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x59.cpp.s
-.PHONY : x59.cpp.s
+x71.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x71.cpp.s
+.PHONY : x71.cpp.s
 
 # Help Target
 help:
@@ -161,9 +161,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... DOMJUDGE_ED
-	@echo ... x59.obj
-	@echo ... x59.i
-	@echo ... x59.s
+	@echo ... x71.obj
+	@echo ... x71.i
+	@echo ... x71.s
 .PHONY : help
 
 
