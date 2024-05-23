@@ -1,11 +1,27 @@
-4 3 6
-Angel A3 a B1 b A1 b
-Pedro B2 c C4 a B1 b
-Jorge A1 a C4 a A3 a
-Adrian C4 c A1 b A3 a
-A1 b B1 b A3 a B2 c C3 c C4 a
-2 1 1
-Gerardo AX Verdadero
-Diana AX Verdadero
-AX Falso
-0 0 0
+altaOficina Carlota administracion
+altaOficina Carlota secretariado
+altaOficina Carlota recursosHumanos
+altaOficina Juan administracion
+altaOficina Juan riesgosLaborales
+ofertaEmpleo administracion
+altaOficina Beatriz administracion
+altaOficina Beatriz jardineria
+altaOficina Beatriz biblioteca
+ofertaEmpleo administracion
+listadoEmpleos Carlota
+altaOficina Carlota informatica
+altaOficina Beatriz informatica
+listadoEmpleos Beatriz
+ofertaEmpleo informatica
+ofertaEmpleo informatica
+ofertaEmpleo informatica
+ofertaEmpleo biblioteca
+FIN
+ofertaEmpleo informatica
+altaOficina Ivan informatica
+altaOficina Ivan administracion
+listadoEmpleos Ivan
+ofertaEmpleo informatica
+ofertaEmpleo administracion
+listadoEmpleos Ivan
+FIN
