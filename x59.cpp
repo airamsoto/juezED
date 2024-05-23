@@ -14,6 +14,7 @@ bool tratar_caso() {
 
     unordered_map<string, unordered_map<string, string>> mapa;
     unordered_set<string> activos;
+    unordered_set<string> to_remove;
 
     for (int i = 0; i < n; ++i) {
         string nombre;
@@ -24,23 +25,25 @@ bool tratar_caso() {
             cin >> id >> sol;
             mapa[nombre][id] = sol;
         }
-    }int contador = n;
+    }
     for (int i = 0; i < p; ++i) {
         string id, sol;
         cin >> id >> sol;
-        vector<string> to_remove;
+
+
         for (const auto& estudiante : activos) {
             if (mapa[estudiante].count(id) && mapa[estudiante][id] != sol) {
-                to_remove.push_back(estudiante);
-                contador--;
+                to_remove.insert(estudiante);
             }
         }
 
-        for (const auto& estudiante : to_remove) activos.erase(estudiante);
-
+    }
+    for (const auto& estudiante : to_remove) {
+        activos.erase(estudiante);
     }
 
-    cout << contador << endl;
+    cout << activos.size() << endl;
+    return true;
     return true;
 }
 
