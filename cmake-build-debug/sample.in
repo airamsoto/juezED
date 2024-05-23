@@ -1,16 +1,9 @@
-addSong HumanTouch BruceSpringsteen 392
-addSong BornToRun BruceSpringsteen 270
-addToPlaylist BornToRun
-addToPlaylist HumanTouch
-play
-totalTime
-addSong LuckyTown BruceSpringsteen 207
-addToPlaylist LuckyTown
-play
-play
-deleteSong HumanTouch
-recent 2
-FIN
-play
+addSong Hello Adele 295
+addSong DarkHorse Jose 100
+addSong JOSICO Pedro 1100
+addToPlaylist JOSICO
+addToPlaylist DarkHorse
+addToPlaylist Hello
+addToPlaylist JOSICO
 current
 FIN

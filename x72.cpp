@@ -21,54 +21,103 @@
 #include <fstream>
 #include <vector>
 #include <list>
-
+#include <unordered_map>
+#include <unordered_set>
 
 using namespace std;
 
-
+//TODO FALLA EN EL RECENT QUE CUADNO PONES UNA NO DEVUELVE LA ULTIMA
 class iPud {
 public:
-    iPud() { }
+    iPud() {}
 
     void addSong(const string &name, const string &artist, int duration) {
 
+        if (cancionesDuracion.count(name)) throw std::domain_error("Error");
+        cancionesDuracion[name] = duration;
     }
 
     void addToPlaylist(const string &name) {
+        if (!cancionesDuracion.count(name)) throw std::domain_error("Error");
+        if (!playListSet.count(name)) {
+            playList.push_back(name);
+            playListSet.insert(name);
 
+            duracion += cancionesDuracion[name];
+            playlistIterators[name] = --playList.end();
+
+        }
     }
 
     string current() const {
-        return "";
+        if (playListSet.empty()) throw std::domain_error("Error");
+        return playList.front();
     }
 
     void play() {
+        if (!playList.empty()) {
+            duracion -= cancionesDuracion[playList.front()];
+            playListSet.erase(playList.front());
+            playlistIterators[playList.front()] = --playList.end();
+            if(reproducidasSet.count(playList.front())) {
+                auto it = reproducidastIterator[playList.front()];
+                reproducidastIterator.erase(playList.front());
+                reproducidasSet.erase(playList.front());
+                reproducidas.erase(it);
 
+            }
+            reproducidas.push_front(playList.front());
+            reproducidastIterator[playList.front()] = reproducidas.begin();
+            reproducidasSet.insert(playList.front());
+
+            playList.pop_front();
+        }
     }
 
     int totalTime() const {
-        return -1;
+        return duracion;
     }
 
     list<string> recent(int n) const {
-        return {};
+        if (n > reproducidas.size()) {
+            n = reproducidas.size();
+        }
+        auto it = reproducidas.begin();
+        advance(it, n);
+        return list<string>(reproducidas.begin(), it);
     }
 
     void deleteSong(const string &song) {
+        if (cancionesDuracion.count(song)) {
+            if(reproducidasSet.count(song)) {
+                auto it = reproducidastIterator[song];
+                reproducidastIterator.erase(song);
+                reproducidasSet.erase(song);
+                reproducidas.erase(it);
+            }
+            if (playListSet.count(song)) duracion -= cancionesDuracion[song];
+            cancionesDuracion.erase(song);
+            playlistIterators.erase(song);
+            playListSet.erase(song);
+
+
+
+        }
 
     }
 
 
 private:
- /*
-  * reproducidas ordenadas y  no ordenadas para busquedas por ejemplo para ver si ya se ha añadido las no ordenadas puede
-  *  unorder set de canciones generales para el ipud
-  *  uroder map de canciion mas int de la duracion de la cancion
-  *
-  *
-  */
-};
+    unordered_map<string, int> cancionesDuracion;
+    list<string> playList;
+    unordered_set<string> playListSet;
+    list<string> reproducidas;
+    unordered_set<string> reproducidasSet;
+    int duracion = 0;
+    unordered_map<string, list<string>::iterator> playlistIterators;
+    unordered_map<string, list<string>::iterator>  reproducidastIterator;
 
+};
 
 
 bool tratar_caso() {
@@ -82,7 +131,7 @@ bool tratar_caso() {
 
     while (comando != "FIN") {
         try {
-            if (comando == "addSong")  {
+            if (comando == "addSong") {
                 string nombre, artista;
                 int duracion;
                 cin >> nombre >> artista >> duracion;
