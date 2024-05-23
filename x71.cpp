@@ -1,26 +1,4 @@
 
-Se ha añadido el archivo adjunto x71.cpp.Ninguno seleccionado
-
-Ir al contenido
-        Uso de Gmail con lectores de pantalla
-Se ha marcado la conversación como spam.
-Más información  Deshacer
-        Conversaciones
-Instagram
-2
-New login on Instagram from Safari on Mac OS X
-- We've noticed a new login, airamsoto_ We've noticed a login from a device that you don't usually use. Mac OS X · Safari · Madrid, Spain April 22 at 1:48 PM (PDT) If this was you, you won
-
-22 abr
-        Colegio Mayor Nuest.
-SOLICITUD DE REINGRESO COLEGIO MAYOR GUADALUPE 2024-2025
-Archivo adjunto:
-REGLAMENTO_RÉGIMEN_INTERNO_GUADALUPE_2022-2023.pdf
-22 abr
-5,93 GB ocupados de 15 GB
-        Términos · Privacidad · Política del programa
-        Última actividad de la cuenta: hace 54 minutos
-        Detalles
 // Oficinas de empleo
 // ------------------
 // Estructuras de datos
@@ -160,6 +138,3 @@ int main() {
 
     return 0;
 }
-
-x71.cpp
-        Mostrando x71.cpp.
