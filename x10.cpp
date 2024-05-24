@@ -2,16 +2,19 @@
 #include <fstream>
 #include <cassert>
 #include <map>
- //TODO NO CONSIGO HACERLO
+//TODO NO CONSIGO HACERLO
 using namespace std;
 
 class ListLinkedSingle {
 public:
     ListLinkedSingle() : head(nullptr) {}
+
     void tratar_caso();
-    void  display();
+
+    void display();
+
     void push_front(const int &elem) {
-        Node *new_node = new Node { elem, head };
+        Node *new_node = new Node{elem, head};
         head = new_node;
     }
 // ...
@@ -21,34 +24,38 @@ private:
         Node *next;
     };
     Node *head;
+
     void escamochar(ListLinkedSingle &dest);
+
     void push_back(const int &elem);
+
     void pop_back();
+
     void pop_front();
 
 
-
-
 };
+
 void ListLinkedSingle::push_back(const int &elem) {
-    Node *new_node = new Node { elem, nullptr };
+    Node *new_node = new Node{elem, nullptr};
     if (head == nullptr) {
         head = new_node;
     } else {
         Node *current = head;
-        while (current->next != nullptr ) {
+        while (current->next != nullptr) {
             current = current->next;
         }
         current->next = new_node;
     }
 }
+
 void ListLinkedSingle::tratar_caso() {
-ListLinkedSingle l1, l2;
+    ListLinkedSingle l1, l2;
     int numElems, value;
     cin >> numElems;
     for (int i = 0; i < numElems; ++i) {
         cin >> value;
-        l1.push_back(value);
+        l1.push_front(value);
     }
     l1.escamochar(l2);
     cout << "L1 ";
@@ -58,19 +65,21 @@ ListLinkedSingle l1, l2;
 
 
 }
+
 void ListLinkedSingle::display() {
 
     cout << "[";
     if (head != nullptr) {
-        cout <<head->value;
+        cout << head->value;
         Node *current = head->next;
         while (current != nullptr) {
-            cout << ", "  << current->value;
+            cout << ", " << current->value;
             current = current->next;
         }
     }
     cout << "]" << endl;
 }
+
 void ListLinkedSingle::pop_back() {
     assert (head != nullptr);
     if (head->next == nullptr) {
@@ -95,90 +104,64 @@ void ListLinkedSingle::pop_front() {
     head = head->next;
     delete old_head;
 }
-
+//TODO METER EN DEST SIN PUSH Y SACAR DE THIS SIN PUSH
 void ListLinkedSingle::escamochar(ListLinkedSingle &dest) {
-    // Mover los negativos del principio
-    while (head != nullptr && head->value < 0) {
-        Node* temp = head;
-        head = head->next;
+    Node *current = head;
+    Node *dest_head;
+    Node *auxDest;
+    while (current != nullptr && current->value < 0) {
+        // dest.push_front(current->value);
+        dest_head = current;
+        dest_head->next = auxDest;
 
-        // Añadir el nodo eliminado a la lista destino al final
-        temp->next = nullptr;
-        if (dest.head == nullptr) {
-        } else {
-            Node* dest_current = dest.head;
-            while (dest_current->next != nullptr) {
-                dest_current = dest_current->next;
-            }
-            dest_current->next = temp;
-        }
+        current = current->next;
+        //this->pop_front();
     }
 
-    // Si la lista se vacía después de eliminar los negativos iniciales
-    if (head == nullptr) {
-        return;
-    }
-
-    // Encontrar el último nodo no negativo y mover los negativos al final
-    Node* current = head;
-    Node* last_non_negative = nullptr;
+    Node *negativosIni = nullptr;
+    Node *previous = nullptr;
 
     while (current != nullptr) {
-        if (current->value >= 0) {
-            last_non_negative = current;
-        }
+        if (current->value < 0 && negativosIni == nullptr) {
+            negativosIni = previous;
+        } else if (current->value >= 0) negativosIni = nullptr;
+        previous = current;
         current = current->next;
     }
-
-    // Eliminar los negativos del final y moverlos a la lista dest
-    if (last_non_negative != nullptr && last_non_negative->next != nullptr) {
-        current = last_non_negative->next;
-        last_non_negative->next = nullptr;
-
-        while (current != nullptr) {
-            Node* temp = current;
-            current = current->next;
-
-            // Añadir el nodo eliminado a la lista destino al final
-            temp->next = nullptr;
-            if (dest.head == nullptr) {
-                dest.head = temp;
-            } else {
-                Node* dest_current = dest.head;
-                while (dest_current->next != nullptr) {
-                    dest_current = dest_current->next;
-                }
-                dest_current->next = temp;
-            }
+    if (negativosIni != nullptr) {
+        Node *aux = negativosIni->next;
+        while (aux != nullptr) {
+            dest.push_front(aux->value);
+            aux = aux->next;
         }
+
+        negativosIni->next = nullptr;
     }
+
+
 }
-
-
-
-
 
 
 int main() {
 
 #ifndef DOMJUDGE
-std::ifstream in("sample.in");
-auto cinbuf = std::cin.rdbuf(in.rdbuf());
+    std::ifstream in("sample.in");
+    auto cinbuf = std::cin.rdbuf(in.rdbuf());
 #endif
-int numero_casos;
-cin >> numero_casos;
-ListLinkedSingle l1;
+    int numero_casos;
+    cin >> numero_casos;
+    ListLinkedSingle l1;
 // Llamamos a `tratar_caso` hasta que se agoten los casos de prueba
-for (int i = 0; i <numero_casos; i++) {
-   l1.tratar_caso();
+    for (int i = 0; i < numero_casos; i++) {
+        l1.tratar_caso();
 
-}
+    }
 
 // Comenta esto también si has comentado lo anterior.
 #ifndef DOMJUDGE
-std::cin.rdbuf(cinbuf);
+    std::cin.rdbuf(cinbuf);
 #endif
-return 0;
+    return 0;
 }
 /*
 4
