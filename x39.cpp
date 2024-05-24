@@ -10,7 +10,8 @@
 #include <utility>
 
 // TAD de árboles binarios de búsqueda
-template <class T> class BinTree {
+template<class T>
+class BinTree {
 public:
     BinTree() : root_node(nullptr) {}
 
@@ -76,13 +77,14 @@ private:
     }
 };
 
-template <typename T>
+template<typename T>
 std::ostream &operator<<(std::ostream &out, const BinTree<T> &tree) {
     tree.display(out);
     return out;
 }
 
-template <typename T> BinTree<T> read_tree(std::istream &in) {
+template<typename T>
+BinTree<T> read_tree(std::istream &in) {
     char c;
     in >> c;
     if (c == '.') {
@@ -101,23 +103,19 @@ template <typename T> BinTree<T> read_tree(std::istream &in) {
 }
 
 using namespace std;
-template <typename T>
-int max_nodos_salvables(const BinTree<T> &arbol, int &total) {
-    if(arbol.empty()) return 0;
-    else {
-        int izq = 0, der = 0, total;
-        izq +=  max_nodos_salvables(arbol.left());
-        der += max_nodos_salvables(arbol.right());
-        return total;
-    }
-}
-template <typename T>
+
+
+template<typename T>
 int max_nodos_salvables(const BinTree<T> &arbol) {
-    if(arbol.empty()) return 0;
-    else {
-        int izq = 0, der = 0, total;
-        if (!arbol.left().empty()) izq +=  max_nodos_salvables(arbol.left());
-        if (!arbol.left().empty()) der += max_nodos_salvables(arbol.right());
+    if (arbol.empty()) return 0;
+    else { //pair con numero de nodos de cada subaborl y la distancia minima hasta un nodo con un hijo o cero hijos (hoja)
+        int izq, der , total = 0;
+        izq = max_nodos_salvables(arbol.left());
+        der = max_nodos_salvables(arbol.right());
+        total = max(izq + der, total + 1);
+        if (izq >= der) {
+            total += max_nodos_salvables(arbol.right());
+        } else total += max_nodos_salvables(arbol.left());
 
         return total;
     }

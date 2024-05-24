@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/DOMJUDGE_ED.dir/x38-AreaMasGrandeDeUnArbol.cpp.obj"
-  "CMakeFiles/DOMJUDGE_ED.dir/x38-AreaMasGrandeDeUnArbol.cpp.obj.d"
+  "CMakeFiles/DOMJUDGE_ED.dir/x39.cpp.obj"
+  "CMakeFiles/DOMJUDGE_ED.dir/x39.cpp.obj.d"
   "DOMJUDGE_ED.exe"
   "DOMJUDGE_ED.exe.manifest"
   "DOMJUDGE_ED.pdb"
