@@ -107,13 +107,20 @@ template <typename T>
 int max_nodos_salvables(const BinTree<T> &arbol) {
     if(arbol.empty()) return 0;
     else {
-        int izq = max_nodos_salvables(arbol.left());
-        int der = max_nodos_salvables(arbol.right());
-        int contador = 0;
-        if(!arbol.right().empty()) contador += izq + 1;
-        if (!arbol.left().empty()) contador += der +1;
+        int izq = 0, der = 0, total;
+        if (!arbol.left().empty()) izq +=  max_nodos_salvables(arbol.left());
+        if (!arbol.left().empty()) der += max_nodos_salvables(arbol.right());
+        total = max (izq, der);
 
-        return contador;
+        if(izq > der && !arbol.right().empty()) {
+            total += max_nodos_salvables(arbol.right()) ;
+
+        } else  if (!arbol.left().empty()) {
+            total+= max_nodos_salvables(arbol.left());
+
+        }
+
+        return total;
     }
 }
 
