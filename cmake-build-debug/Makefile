@@ -128,29 +128,29 @@ DOMJUDGE_ED/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/build
 .PHONY : DOMJUDGE_ED/fast
 
-x39.obj: x39.cpp.obj
-.PHONY : x39.obj
+x38-AreaMasGrandeDeUnArbol.obj: x38-AreaMasGrandeDeUnArbol.cpp.obj
+.PHONY : x38-AreaMasGrandeDeUnArbol.obj
 
 # target to build an object file
-x39.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x39.cpp.obj
-.PHONY : x39.cpp.obj
+x38-AreaMasGrandeDeUnArbol.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x38-AreaMasGrandeDeUnArbol.cpp.obj
+.PHONY : x38-AreaMasGrandeDeUnArbol.cpp.obj
 
-x39.i: x39.cpp.i
-.PHONY : x39.i
+x38-AreaMasGrandeDeUnArbol.i: x38-AreaMasGrandeDeUnArbol.cpp.i
+.PHONY : x38-AreaMasGrandeDeUnArbol.i
 
 # target to preprocess a source file
-x39.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x39.cpp.i
-.PHONY : x39.cpp.i
+x38-AreaMasGrandeDeUnArbol.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x38-AreaMasGrandeDeUnArbol.cpp.i
+.PHONY : x38-AreaMasGrandeDeUnArbol.cpp.i
 
-x39.s: x39.cpp.s
-.PHONY : x39.s
+x38-AreaMasGrandeDeUnArbol.s: x38-AreaMasGrandeDeUnArbol.cpp.s
+.PHONY : x38-AreaMasGrandeDeUnArbol.s
 
 # target to generate assembly for a file
-x39.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x39.cpp.s
-.PHONY : x39.cpp.s
+x38-AreaMasGrandeDeUnArbol.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x38-AreaMasGrandeDeUnArbol.cpp.s
+.PHONY : x38-AreaMasGrandeDeUnArbol.cpp.s
 
 # Help Target
 help:
@@ -161,9 +161,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... DOMJUDGE_ED
-	@echo ... x39.obj
-	@echo ... x39.i
-	@echo ... x39.s
+	@echo ... x38-AreaMasGrandeDeUnArbol.obj
+	@echo ... x38-AreaMasGrandeDeUnArbol.i
+	@echo ... x38-AreaMasGrandeDeUnArbol.s
 .PHONY : help
 
 

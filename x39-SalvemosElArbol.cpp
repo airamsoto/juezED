@@ -1,5 +1,5 @@
-// Área más grande en un árbol binario
-// -----------------------------------
+// Salvemos el árbol
+// -----------------
 // Estructuras de datos
 
 
@@ -10,8 +10,7 @@
 #include <fstream>
 
 // TAD de árboles binarios de búsqueda
-template<class T>
-class BinTree {
+template <class T> class BinTree {
 public:
     BinTree() : root_node(nullptr) {}
 
@@ -77,14 +76,13 @@ private:
     }
 };
 
-template<typename T>
+template <typename T>
 std::ostream &operator<<(std::ostream &out, const BinTree<T> &tree) {
     tree.display(out);
     return out;
 }
 
-template<typename T>
-BinTree<T> read_tree(std::istream &in) {
+template <typename T> BinTree<T> read_tree(std::istream &in) {
     char c;
     in >> c;
     if (c == '.') {
@@ -105,49 +103,44 @@ BinTree<T> read_tree(std::istream &in) {
 using namespace std;
 
 
-int area_mayor_sin_barreras(const BinTree<bool> &tree, int &mejorCaso) {
 
-    if (tree.empty()) return 0;
-    else {
+template <typename T>
+pair<bool, int> salvados(const BinTree<T> &arbol) {
+    if (arbol.empty()) {
+        return {false, 0};
+    } else {
+        auto [infectadoIzq, nodosIzq] = salvados(arbol.left());
+        auto [infectadoDer, nodosDer] = salvados(arbol.right());
 
-        int nodosIzquierda = area_mayor_sin_barreras(tree.left(), mejorCaso);
-        int nodosDerecha = area_mayor_sin_barreras(tree.right(), mejorCaso);
-        int actual = nodosDerecha + nodosIzquierda;
-
-        if (!tree.left().empty() && tree.left().root() == 1) {
-            actual -= nodosIzquierda;
+        int nodos = 0;
+        if (!infectadoIzq && !infectadoDer) {
+            nodos = nodosIzq + nodosDer+1;
+            return {false, nodos};
+        } else {
+            return {infectadoIzq || infectadoDer, max(nodosIzq, nodosDer)};
         }
-        if (!tree.right().empty() && tree.right().root() == 1) {
-            actual -= nodosDerecha;
-        }
-        if (tree.root() == 0) actual++;
-        else {
-            actual = 0;
-            nodosIzquierda = 0;
-            nodosDerecha = 0;
-        }
-        mejorCaso = max(mejorCaso, actual);
-
-        return max(actual, max(nodosDerecha, nodosIzquierda));
-
     }
 }
 
-int area_mayor_sin_barreras(const BinTree<bool> &tree) {
-    if (tree.empty()) {
-        return 0;
-    } else {
-        int mejorCaso = 0;
-        area_mayor_sin_barreras(tree, mejorCaso);
-        return mejorCaso;
+template <typename T>
+int max_nodos_salvables(const BinTree<T> &arbol) {
+    // Implementa aquí la función pedida. No puedes
+    // modificar la cabecera, pero puedes apoyarte en funciones
+    // auxiliares, si necesitas devolver más de un resultado.
+
+    if(arbol.empty()) return 0;
+    else {
+
+        auto [infectado, nodos] = salvados(arbol);
+        return nodos;
     }
 }
 
 
 // Función que trata un caso de prueba
 void tratar_caso() {
-    BinTree<bool> t = read_tree<bool>(cin);
-    cout << area_mayor_sin_barreras(t) << "\n";
+    BinTree<char> t = read_tree<char>(cin);
+    cout << max_nodos_salvables(t) << "\n";
 }
 
 
@@ -168,4 +161,5 @@ int main() {
 #endif
     return 0;
 }
+
 

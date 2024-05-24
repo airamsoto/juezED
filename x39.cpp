@@ -101,8 +101,16 @@ template <typename T> BinTree<T> read_tree(std::istream &in) {
 }
 
 using namespace std;
-
-
+template <typename T>
+int max_nodos_salvables(const BinTree<T> &arbol, int &total) {
+    if(arbol.empty()) return 0;
+    else {
+        int izq = 0, der = 0, total;
+        izq +=  max_nodos_salvables(arbol.left());
+        der += max_nodos_salvables(arbol.right());
+        return total;
+    }
+}
 template <typename T>
 int max_nodos_salvables(const BinTree<T> &arbol) {
     if(arbol.empty()) return 0;
@@ -110,15 +118,6 @@ int max_nodos_salvables(const BinTree<T> &arbol) {
         int izq = 0, der = 0, total;
         if (!arbol.left().empty()) izq +=  max_nodos_salvables(arbol.left());
         if (!arbol.left().empty()) der += max_nodos_salvables(arbol.right());
-        total = max (izq, der);
-
-        if(izq > der && !arbol.right().empty()) {
-            total += max_nodos_salvables(arbol.right()) ;
-
-        } else  if (!arbol.left().empty()) {
-            total+= max_nodos_salvables(arbol.left());
-
-        }
 
         return total;
     }
