@@ -6,8 +6,8 @@
 #include <iostream>
 #include <cassert>
 #include <memory>
-#include <utility>
 #include <fstream>
+#include <utility>
 
 // TAD de árboles binarios de búsqueda
 template <class T> class BinTree {
@@ -103,36 +103,17 @@ template <typename T> BinTree<T> read_tree(std::istream &in) {
 using namespace std;
 
 
-
-template <typename T>
-pair<bool, int> salvados(const BinTree<T> &arbol) {
-    if (arbol.empty()) {
-        return {false, 0};
-    } else {
-        auto [infectadoIzq, nodosIzq] = salvados(arbol.left());
-        auto [infectadoDer, nodosDer] = salvados(arbol.right());
-
-        int nodos = 0;
-        if (!infectadoIzq && !infectadoDer) {
-            nodos = nodosIzq + nodosDer+1;
-            return {false, nodos};
-        } else {
-            return {infectadoIzq || infectadoDer, max(nodosIzq, nodosDer)};
-        }
-    }
-}
-
 template <typename T>
 int max_nodos_salvables(const BinTree<T> &arbol) {
-    // Implementa aquí la función pedida. No puedes
-    // modificar la cabecera, pero puedes apoyarte en funciones
-    // auxiliares, si necesitas devolver más de un resultado.
-
     if(arbol.empty()) return 0;
     else {
+        int izq = max_nodos_salvables(arbol.left());
+        int der = max_nodos_salvables(arbol.right());
+        int contador = 0;
+        if(!arbol.right().empty()) contador += izq + 1;
+        if (!arbol.left().empty()) contador += der +1;
 
-        auto [infectado, nodos] = salvados(arbol);
-        return nodos;
+        return contador;
     }
 }
 
@@ -161,5 +142,4 @@ int main() {
 #endif
     return 0;
 }
-
 

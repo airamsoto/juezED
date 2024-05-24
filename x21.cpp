@@ -27,21 +27,25 @@
 
 #include <iostream>
 #include <cassert>
-#include <string> 
+#include <string>
 #include <fstream>
 #include <queue>
 #include <stack>
 
 
 using namespace std;
+
 template<
-    class T,
-    class Container = std::deque<T>
-> class queue;
+        class T,
+        class Container = std::deque<T>
+>
+class queue;
+
 template<
-    class T,
-    class Container = std::stack<T>
-> class stack;
+        class T,
+        class Container = std::stack<T>
+>
+class stack;
 
 
 // Implementa aqu’ la funci—n para tratar UN caso de prueba. La funci—n
@@ -52,37 +56,18 @@ template<
 // No olvides indicar y justificar el coste de la funci—n.
 
 bool tratar_caso() {
-    std::queue<int> cola;
-    std::queue<int> cola_aux;
-    std::stack<int> pila;
+    std::deque<int> dobleCola;
     int n, num;
     cin >> n;
     if (n == 0) return false;
     for (int i = 0; i < n; i++) {
         cin >> num;
-        cola.push(num);
+        if (num < 0) dobleCola.push_back(num);
+        else dobleCola.push_front(num);
     }
-    while (!cola.empty()) {
-       
-        int elemento = cola.front();
-        cola.pop();
-
-        while (!cola_aux.empty() && (elemento) > (cola_aux.front())) {
-            cola.push(cola_aux.front());
-            cola_aux.pop();
-        }
-        cola_aux.push(elemento);
-    }
-
-    while (!cola_aux.empty()) {
-        cola.push(cola_aux.front());
-        //cout << cola_aux.front() << " ";
-        cola_aux.pop();
-    }
-    while (!cola.empty()) {
-        
-        cout << cola.front() << " ";
-        cola.pop();
+    while (!dobleCola.empty()) {
+        cout << dobleCola.back() << " ";
+        dobleCola.pop_back();
     }
     cout << endl;
     return true;
