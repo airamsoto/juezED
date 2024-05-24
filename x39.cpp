@@ -103,24 +103,32 @@ BinTree<T> read_tree(std::istream &in) {
 }
 
 using namespace std;
+template<typename T>
+
+pair<int, int> max_nodos(const BinTree<T> &arbol) {
+
+    //pair con numero de nodos de cada subaborl y la distancia minima hasta un nodo con un hijo o cero hijos (hoja)
+    auto[nodosIzquierda, distanciaIzq] = max_nodos(arbol.left());
+    auto[nodosDerecha, distanciaDer] = max_nodos(arbol.right());
+
+    return {nodosIzquierda+nodosDerecha, min(distanciaDer, distanciaIzq)};
+
+}
 
 
 template<typename T>
 int max_nodos_salvables(const BinTree<T> &arbol) {
     if (arbol.empty()) return 0;
-    else { //pair con numero de nodos de cada subaborl y la distancia minima hasta un nodo con un hijo o cero hijos (hoja)
-        int izq, der , total = 0;
-        izq = max_nodos_salvables(arbol.left());
-        der = max_nodos_salvables(arbol.right());
-        total = max(izq + der, total + 1);
-        if (izq >= der) {
-            total += max_nodos_salvables(arbol.right());
-        } else total += max_nodos_salvables(arbol.left());
-
-        return total;
+    else {
+        return max_nodos(arbol).first;
     }
 }
-
+/*
+ * 3
+((((. * .) * (. * .)) * ((. * .) * (. * .))) * ((. * (. * (. * .))) * (. * (. * (. * .)))))
+((. * .) * .)
+(((. * .) * .) * ((. * (. * .)) * (. * .)))
+ */
 
 // Función que trata un caso de prueba
 void tratar_caso() {

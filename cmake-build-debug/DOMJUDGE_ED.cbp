@@ -82,7 +82,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/airam/git/juezED/x10.cpp">
+		<Unit filename="C:/Users/airam/git/juezED/x11.cpp">
 			<Option target="DOMJUDGE_ED"/>
 		</Unit>
 		<Unit filename="C:/Users/airam/git/juezED/CMakeLists.txt">

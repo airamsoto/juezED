@@ -104,7 +104,7 @@ void ListLinkedSingle::pop_front() {
     head = head->next;
     delete old_head;
 }
-//TODO METER EN DEST SIN PUSH Y SACAR DE THIS SIN PUSH
+//TODO METER EN DEST SIN PUSH Y ELIMINAR DE THIS SIN POP
 void ListLinkedSingle::escamochar(ListLinkedSingle &dest) {
     Node *current = head;
     Node *dest_head;
@@ -116,6 +116,7 @@ void ListLinkedSingle::escamochar(ListLinkedSingle &dest) {
 
         current = current->next;
         //this->pop_front();
+        dest_head = nullptr;
     }
 
     Node *negativosIni = nullptr;
@@ -131,13 +132,13 @@ void ListLinkedSingle::escamochar(ListLinkedSingle &dest) {
     if (negativosIni != nullptr) {
         Node *aux = negativosIni->next;
         while (aux != nullptr) {
+
             dest.push_front(aux->value);
             aux = aux->next;
         }
 
         negativosIni->next = nullptr;
     }
-
 
 }
 
@@ -174,4 +175,15 @@ int main() {
 2
 -10 -4
 
+ */
+/*
+ * 4
+7
+-1 7 -2 4 1 -5 -3
+4
+-1 2 -5 3
+5
+1 -21 -5 -13 2
+2
+-10 -4
  */

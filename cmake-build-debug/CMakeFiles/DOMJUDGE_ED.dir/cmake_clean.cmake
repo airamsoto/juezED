@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/DOMJUDGE_ED.dir/x10.cpp.obj"
-  "CMakeFiles/DOMJUDGE_ED.dir/x10.cpp.obj.d"
+  "CMakeFiles/DOMJUDGE_ED.dir/x11.cpp.obj"
+  "CMakeFiles/DOMJUDGE_ED.dir/x11.cpp.obj.d"
   "DOMJUDGE_ED.exe"
   "DOMJUDGE_ED.exe.manifest"
   "DOMJUDGE_ED.pdb"
