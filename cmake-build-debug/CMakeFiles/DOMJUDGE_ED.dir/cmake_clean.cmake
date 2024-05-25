@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/DOMJUDGE_ED.dir/x100ExamenJulio2021Arboles.cpp.obj"
-  "CMakeFiles/DOMJUDGE_ED.dir/x100ExamenJulio2021Arboles.cpp.obj.d"
+  "CMakeFiles/DOMJUDGE_ED.dir/x100ExamenSeptiembre2020Arboles.cpp.obj"
+  "CMakeFiles/DOMJUDGE_ED.dir/x100ExamenSeptiembre2020Arboles.cpp.obj.d"
   "DOMJUDGE_ED.exe"
   "DOMJUDGE_ED.exe.manifest"
   "DOMJUDGE_ED.pdb"

@@ -3,4 +3,4 @@ project(DOMJUDGE_ED)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(DOMJUDGE_ED x100ExamenJulio2021Arboles.cpp)
+add_executable(DOMJUDGE_ED x100ExamenSeptiembre2020Arboles.cpp)
