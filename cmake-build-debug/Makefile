@@ -128,29 +128,29 @@ DOMJUDGE_ED/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/build
 .PHONY : DOMJUDGE_ED/fast
 
-x100ExamenSeptiembre2020Arboles.obj: x100ExamenSeptiembre2020Arboles.cpp.obj
-.PHONY : x100ExamenSeptiembre2020Arboles.obj
+x100ExamenSeptiembreListas.obj: x100ExamenSeptiembreListas.cpp.obj
+.PHONY : x100ExamenSeptiembreListas.obj
 
 # target to build an object file
-x100ExamenSeptiembre2020Arboles.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x100ExamenSeptiembre2020Arboles.cpp.obj
-.PHONY : x100ExamenSeptiembre2020Arboles.cpp.obj
+x100ExamenSeptiembreListas.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x100ExamenSeptiembreListas.cpp.obj
+.PHONY : x100ExamenSeptiembreListas.cpp.obj
 
-x100ExamenSeptiembre2020Arboles.i: x100ExamenSeptiembre2020Arboles.cpp.i
-.PHONY : x100ExamenSeptiembre2020Arboles.i
+x100ExamenSeptiembreListas.i: x100ExamenSeptiembreListas.cpp.i
+.PHONY : x100ExamenSeptiembreListas.i
 
 # target to preprocess a source file
-x100ExamenSeptiembre2020Arboles.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x100ExamenSeptiembre2020Arboles.cpp.i
-.PHONY : x100ExamenSeptiembre2020Arboles.cpp.i
+x100ExamenSeptiembreListas.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x100ExamenSeptiembreListas.cpp.i
+.PHONY : x100ExamenSeptiembreListas.cpp.i
 
-x100ExamenSeptiembre2020Arboles.s: x100ExamenSeptiembre2020Arboles.cpp.s
-.PHONY : x100ExamenSeptiembre2020Arboles.s
+x100ExamenSeptiembreListas.s: x100ExamenSeptiembreListas.cpp.s
+.PHONY : x100ExamenSeptiembreListas.s
 
 # target to generate assembly for a file
-x100ExamenSeptiembre2020Arboles.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x100ExamenSeptiembre2020Arboles.cpp.s
-.PHONY : x100ExamenSeptiembre2020Arboles.cpp.s
+x100ExamenSeptiembreListas.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x100ExamenSeptiembreListas.cpp.s
+.PHONY : x100ExamenSeptiembreListas.cpp.s
 
 # Help Target
 help:
@@ -161,9 +161,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... DOMJUDGE_ED
-	@echo ... x100ExamenSeptiembre2020Arboles.obj
-	@echo ... x100ExamenSeptiembre2020Arboles.i
-	@echo ... x100ExamenSeptiembre2020Arboles.s
+	@echo ... x100ExamenSeptiembreListas.obj
+	@echo ... x100ExamenSeptiembreListas.i
+	@echo ... x100ExamenSeptiembreListas.s
 .PHONY : help
 
 
