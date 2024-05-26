@@ -1,5 +1,4 @@
-// Salvemos el árbol
-// -----------------
+
 // Estructuras de datos
 
 
@@ -102,32 +101,33 @@ template <typename T> BinTree<T> read_tree(std::istream &in) {
 
 using namespace std;
 
-
-
-
-template <typename T>
-pair<int, int> max_nodos_salvables(const BinTree<T> &arbol) {
-    // Implementa aquí la función pedida. No puedes
-    // modificar la cabecera, pero puedes apoyarte en funciones
-    // auxiliares, si necesitas devolver más de un resultado.
-
-    if(arbol.empty()) return {0,0};
-    else {
-
-        auto [izq, nodoszq] = max_nodos_salvables(arbol.left());
-        auto [der, nodosDer] = max_nodos_salvables(arbol.right());
-        int num = nodoszq + nodosDer + 1;
-        int salv = max(izq + nodosDer, nodoszq + der);
-
-        return {salv, num};
+pair<int, int> num_aven(const BinTree<int> tree) {
+    if(tree.empty()) {
+        return {0, 0};
+    } else if (tree.right().empty() && tree.left().empty()) {
+        return {}
     }
+    else {
+        auto[maxValorIzq, numAventajadosIzq] = num_aven(tree.left());
+        auto[maxValorDer, numAventajadosDer] = num_aven(tree.right());
+        int aventajados =0 ;
+        if (tree.root() > maxValorIzq && tree.root() > maxValorDer) aventajados++;
+
+
+
+        return {max(max (maxValorDer, maxValorIzq), tree.root()), max (numAventajadosDer, numAventajadosIzq) + aventajados};
+    }
+
+}
+int num_aventajados(const BinTree<int> &tree) {
+return 0;
 }
 
 
 // Función que trata un caso de prueba
 void tratar_caso() {
     BinTree<char> t = read_tree<char>(cin);
-    cout << max_nodos_salvables(t).first << "\n";
+
 }
 
 
@@ -148,5 +148,6 @@ int main() {
 #endif
     return 0;
 }
+
 
 

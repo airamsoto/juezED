@@ -128,29 +128,29 @@ DOMJUDGE_ED/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/build
 .PHONY : DOMJUDGE_ED/fast
 
-x100ExamenSeptiembreListas.obj: x100ExamenSeptiembreListas.cpp.obj
-.PHONY : x100ExamenSeptiembreListas.obj
+x39-SalvemosElArbol.obj: x39-SalvemosElArbol.cpp.obj
+.PHONY : x39-SalvemosElArbol.obj
 
 # target to build an object file
-x100ExamenSeptiembreListas.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x100ExamenSeptiembreListas.cpp.obj
-.PHONY : x100ExamenSeptiembreListas.cpp.obj
+x39-SalvemosElArbol.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x39-SalvemosElArbol.cpp.obj
+.PHONY : x39-SalvemosElArbol.cpp.obj
 
-x100ExamenSeptiembreListas.i: x100ExamenSeptiembreListas.cpp.i
-.PHONY : x100ExamenSeptiembreListas.i
+x39-SalvemosElArbol.i: x39-SalvemosElArbol.cpp.i
+.PHONY : x39-SalvemosElArbol.i
 
 # target to preprocess a source file
-x100ExamenSeptiembreListas.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x100ExamenSeptiembreListas.cpp.i
-.PHONY : x100ExamenSeptiembreListas.cpp.i
+x39-SalvemosElArbol.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x39-SalvemosElArbol.cpp.i
+.PHONY : x39-SalvemosElArbol.cpp.i
 
-x100ExamenSeptiembreListas.s: x100ExamenSeptiembreListas.cpp.s
-.PHONY : x100ExamenSeptiembreListas.s
+x39-SalvemosElArbol.s: x39-SalvemosElArbol.cpp.s
+.PHONY : x39-SalvemosElArbol.s
 
 # target to generate assembly for a file
-x100ExamenSeptiembreListas.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x100ExamenSeptiembreListas.cpp.s
-.PHONY : x100ExamenSeptiembreListas.cpp.s
+x39-SalvemosElArbol.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x39-SalvemosElArbol.cpp.s
+.PHONY : x39-SalvemosElArbol.cpp.s
 
 # Help Target
 help:
@@ -161,9 +161,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... DOMJUDGE_ED
-	@echo ... x100ExamenSeptiembreListas.obj
-	@echo ... x100ExamenSeptiembreListas.i
-	@echo ... x100ExamenSeptiembreListas.s
+	@echo ... x39-SalvemosElArbol.obj
+	@echo ... x39-SalvemosElArbol.i
+	@echo ... x39-SalvemosElArbol.s
 .PHONY : help
 
 
