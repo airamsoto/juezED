@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/airam/git/juezED/x39-SalvemosElArbol.cpp" "CMakeFiles/DOMJUDGE_ED.dir/x39-SalvemosElArbol.cpp.obj" "gcc" "CMakeFiles/DOMJUDGE_ED.dir/x39-SalvemosElArbol.cpp.obj.d"
+  "C:/Users/airam/git/juezED/x32-SuavizarUnalista.cpp" "CMakeFiles/DOMJUDGE_ED.dir/x32-SuavizarUnalista.cpp.obj" "gcc" "CMakeFiles/DOMJUDGE_ED.dir/x32-SuavizarUnalista.cpp.obj.d"
   )
 
 # Targets to which this target links.

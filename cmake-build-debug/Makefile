@@ -128,29 +128,29 @@ DOMJUDGE_ED/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/build
 .PHONY : DOMJUDGE_ED/fast
 
-x39-SalvemosElArbol.obj: x39-SalvemosElArbol.cpp.obj
-.PHONY : x39-SalvemosElArbol.obj
+x32-SuavizarUnalista.obj: x32-SuavizarUnalista.cpp.obj
+.PHONY : x32-SuavizarUnalista.obj
 
 # target to build an object file
-x39-SalvemosElArbol.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x39-SalvemosElArbol.cpp.obj
-.PHONY : x39-SalvemosElArbol.cpp.obj
+x32-SuavizarUnalista.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x32-SuavizarUnalista.cpp.obj
+.PHONY : x32-SuavizarUnalista.cpp.obj
 
-x39-SalvemosElArbol.i: x39-SalvemosElArbol.cpp.i
-.PHONY : x39-SalvemosElArbol.i
+x32-SuavizarUnalista.i: x32-SuavizarUnalista.cpp.i
+.PHONY : x32-SuavizarUnalista.i
 
 # target to preprocess a source file
-x39-SalvemosElArbol.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x39-SalvemosElArbol.cpp.i
-.PHONY : x39-SalvemosElArbol.cpp.i
+x32-SuavizarUnalista.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x32-SuavizarUnalista.cpp.i
+.PHONY : x32-SuavizarUnalista.cpp.i
 
-x39-SalvemosElArbol.s: x39-SalvemosElArbol.cpp.s
-.PHONY : x39-SalvemosElArbol.s
+x32-SuavizarUnalista.s: x32-SuavizarUnalista.cpp.s
+.PHONY : x32-SuavizarUnalista.s
 
 # target to generate assembly for a file
-x39-SalvemosElArbol.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x39-SalvemosElArbol.cpp.s
-.PHONY : x39-SalvemosElArbol.cpp.s
+x32-SuavizarUnalista.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x32-SuavizarUnalista.cpp.s
+.PHONY : x32-SuavizarUnalista.cpp.s
 
 # Help Target
 help:
@@ -161,9 +161,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... DOMJUDGE_ED
-	@echo ... x39-SalvemosElArbol.obj
-	@echo ... x39-SalvemosElArbol.i
-	@echo ... x39-SalvemosElArbol.s
+	@echo ... x32-SuavizarUnalista.obj
+	@echo ... x32-SuavizarUnalista.i
+	@echo ... x32-SuavizarUnalista.s
 .PHONY : help
 
 

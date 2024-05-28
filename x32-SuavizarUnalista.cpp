@@ -2,7 +2,7 @@
 #include <cassert>
 #include <fstream>
 #include <list>
-#include <cmath> // Necesario para abs()
+#include <cmath>
 
 using namespace std;
 
@@ -17,33 +17,28 @@ bool tratar_caso() {
         cin >> aux;
         joses.push_back(aux);
     }
+    auto inicio = joses.begin();
+    auto next = ++joses.begin();
+    while ( inicio != --joses.end() && next != joses.begin()) {
+        if(*inicio - *next < -1) {
+            inicio = joses.insert(next, *inicio +1);
 
-    auto it = joses.begin();
+        } else if(*inicio - * next > 1) {
+            inicio = joses.insert(next , *inicio -1);
 
-    while ((it) != (joses.end())) {
-        auto nextit = next(it);
+        } else if( *inicio - * next  ==0 ) {
+            next = joses.erase(next);
 
-        int diferencia = (*nextit - *it);
-
-        if (diferencia > 1) {
-            if (*nextit < *it) {
-                for (int i = 0; i < diferencia; i++) {
-                    it = joses.insert(nextit, *it - 1);
-                }
-            } else {
-                for (int i = 1; i < diferencia; ++i) {
-                    it = joses.insert(nextit, *it + 1);
-                }
-            }
-        } else if (diferencia == 0) {
-                joses.erase(nextit);
+        } else {
+            inicio++;
+            next++;
         }
-
+    }
+   auto it = joses.begin();
+    while (it != joses.end()) {
+        cout << *it << " ";
         it++;
     }
-
-    for (int i : joses)
-        cout << i << " ";
     cout << endl;
 
     return true;
