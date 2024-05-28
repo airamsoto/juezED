@@ -128,29 +128,29 @@ DOMJUDGE_ED/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/build
 .PHONY : DOMJUDGE_ED/fast
 
-x32-SuavizarUnalista.obj: x32-SuavizarUnalista.cpp.obj
-.PHONY : x32-SuavizarUnalista.obj
+x27.obj: x27.cpp.obj
+.PHONY : x27.obj
 
 # target to build an object file
-x32-SuavizarUnalista.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x32-SuavizarUnalista.cpp.obj
-.PHONY : x32-SuavizarUnalista.cpp.obj
+x27.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x27.cpp.obj
+.PHONY : x27.cpp.obj
 
-x32-SuavizarUnalista.i: x32-SuavizarUnalista.cpp.i
-.PHONY : x32-SuavizarUnalista.i
+x27.i: x27.cpp.i
+.PHONY : x27.i
 
 # target to preprocess a source file
-x32-SuavizarUnalista.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x32-SuavizarUnalista.cpp.i
-.PHONY : x32-SuavizarUnalista.cpp.i
+x27.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x27.cpp.i
+.PHONY : x27.cpp.i
 
-x32-SuavizarUnalista.s: x32-SuavizarUnalista.cpp.s
-.PHONY : x32-SuavizarUnalista.s
+x27.s: x27.cpp.s
+.PHONY : x27.s
 
 # target to generate assembly for a file
-x32-SuavizarUnalista.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x32-SuavizarUnalista.cpp.s
-.PHONY : x32-SuavizarUnalista.cpp.s
+x27.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\DOMJUDGE_ED.dir\build.make CMakeFiles/DOMJUDGE_ED.dir/x27.cpp.s
+.PHONY : x27.cpp.s
 
 # Help Target
 help:
@@ -161,9 +161,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... DOMJUDGE_ED
-	@echo ... x32-SuavizarUnalista.obj
-	@echo ... x32-SuavizarUnalista.i
-	@echo ... x32-SuavizarUnalista.s
+	@echo ... x27.obj
+	@echo ... x27.i
+	@echo ... x27.s
 .PHONY : help
 
 

@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/DOMJUDGE_ED.dir/x32-SuavizarUnalista.cpp.obj"
-  "CMakeFiles/DOMJUDGE_ED.dir/x32-SuavizarUnalista.cpp.obj.d"
+  "CMakeFiles/DOMJUDGE_ED.dir/x27.cpp.obj"
+  "CMakeFiles/DOMJUDGE_ED.dir/x27.cpp.obj.d"
   "DOMJUDGE_ED.exe"
   "DOMJUDGE_ED.exe.manifest"
   "DOMJUDGE_ED.pdb"

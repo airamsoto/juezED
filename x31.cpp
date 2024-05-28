@@ -10,20 +10,46 @@
 using namespace std;
 
 bool es_toeplitz(const list<list<int>> &matriz) {
-    // Implementar
+    auto primeraFila = matriz.begin();
+    auto nextFila = next(primeraFila);
+    while(nextFila != matriz.end()) {
+        auto valorActual = primeraFila->begin();
+        auto valorNext = ++nextFila->begin();
+
+        while (valorNext != nextFila->end()) {
+            if(*valorActual != *valorNext) return false;
+            ++valorActual;
+            ++valorNext;
+        }
+        ++primeraFila;
+        ++nextFila;
+    }
+    return true;
+
 }
 
 bool tratar_caso() {
     list<list<int>> matriz;
-    list<int> laux;
-    int aux;
-    while (aux != 0) {
-        cin >> aux;
-        
 
+    int aux;
+    cin >> aux;
+    while (aux != 0) {
+        list<int> laux;
         while (aux != 0) {
+            laux.push_back(aux);
+            cin >> aux;
         }
+        matriz.push_back(laux);
+        cin >> aux;
     }
+
+    if (matriz.empty()) return false;
+    if (es_toeplitz(matriz)) {
+        cout << "SI" << endl;
+    } else {
+        cout << "NO" << endl;
+    }
+    return true;
 }
 
 int main() {
