@@ -58,9 +58,7 @@ void ListLinkedSingle::tratar_caso() {
         l1.push_front(value);
     }
     l1.escamochar(l2);
-    cout << "L1 ";
     l1.display();
-    cout << "L2 ";
     l2.display();
 
 
@@ -105,42 +103,66 @@ void ListLinkedSingle::pop_front() {
     delete old_head;
 }
 //TODO METER EN DEST SIN PUSH Y ELIMINAR DE THIS SIN POP
+
 void ListLinkedSingle::escamochar(ListLinkedSingle &dest) {
-    Node *current = head;
-    Node *dest_head;
-    Node *auxDest;
+    if (head == nullptr) {
+        return;
+    }
+
+    Node* current = head;
+    Node* prev = nullptr;
+
     while (current != nullptr && current->value < 0) {
-        // dest.push_front(current->value);
-        dest_head = current;
-        dest_head->next = auxDest;
-
-        current = current->next;
-        //this->pop_front();
-        dest_head = nullptr;
-    }
-
-    Node *negativosIni = nullptr;
-    Node *previous = nullptr;
-
-    while (current != nullptr) {
-        if (current->value < 0 && negativosIni == nullptr) {
-            negativosIni = previous;
-        } else if (current->value >= 0) negativosIni = nullptr;
-        previous = current;
-        current = current->next;
-    }
-    if (negativosIni != nullptr) {
-        Node *aux = negativosIni->next;
-        while (aux != nullptr) {
-
-            dest.push_front(aux->value);
-            aux = aux->next;
+        if (prev != nullptr) {
+            prev->next = current->next;
+        } else {
+            head = current->next;
         }
-
-        negativosIni->next = nullptr;
+        current->next = nullptr;
+        if (dest.head == nullptr) {
+            dest.head = current;
+        } else {
+            Node* temp = dest.head;
+            while (temp->next != nullptr) {
+                temp = temp->next;
+            }
+            temp->next = current;
+        }
+        current = (prev != nullptr) ? prev->next : head;
+    }
+    if (current == nullptr) {
+        return;
+    }
+    Node* first_non_negative = current;
+    Node* last_non_negative = nullptr;
+    while (current != nullptr) {
+        if (current->value >= 0) {
+            last_non_negative = current;
+        }
+        current = current->next;
     }
 
+    if (last_non_negative != nullptr) {
+        current = last_non_negative->next;
+        last_non_negative->next = nullptr;
+        while (current != nullptr) {
+            Node* next = current->next;
+            current->next = nullptr;
+            if (dest.head == nullptr) {
+                dest.head = current;
+            } else {
+                Node* temp = dest.head;
+                while (temp->next != nullptr) {
+                    temp = temp->next;
+                }
+                temp->next = current;
+            }
+            current = next;
+        }
+    }
+    head = first_non_negative;
 }
+
 
 
 int main() {

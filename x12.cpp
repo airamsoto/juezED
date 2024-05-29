@@ -1,9 +1,10 @@
-// Mezclar dos listas enlazadas
-// ----------------------------
+//Intersección de dos listas enlazadas simples
+// --------------------------------------------
 // Estructuras de datos
-#include <fstream>
+
 #include <iostream>
 #include <cassert>
+#include <fstream>
 
 /*
  * Implementación del TAD Lista mediante listas enlazadas simples.
@@ -77,17 +78,14 @@ public:
 
     void display() const { display(std::cout); }
 
-    void merge(ListLinkedSingle &other);
+    void intersect(const ListLinkedSingle &other);
 
 private:
     Node *head;
 
     void delete_list(Node *start_node);
-
     Node *last_node() const;
-
     Node *nth_node(int n) const;
-
     Node *copy_nodes(Node *start_node) const;
 };
 
@@ -172,33 +170,33 @@ void ListLinkedSingle::display(std::ostream &out) const {
     out << "]";
 }
 
-/*
- * 2 7 10  0
-    1 2 3 4 5 6 14 20 0
- */
-// Implementa aquí la función pedida
-void ListLinkedSingle::merge(ListLinkedSingle &l2) {
-    Node* prev = head;
-    Node* current  = head->next;
-    Node* other = l2.head->next;
-    while (current != nullptr && other != nullptr) {
-        if(current->value > other->value) {
-            Node* next2 = other->next;
-            prev->next = other;
-            other->next = current;
-            prev = other;
-            other = next2;
-        } else {
-            prev = current;
-            current = current->next;
-        }
 
+void ListLinkedSingle::intersect(const ListLinkedSingle &other) {
+    Node *prev = head;
+    Node *curr1 = head->next;
+    Node *curr2 = other.head->next;
+
+    while (curr1 != nullptr && curr2 != nullptr) {
+        if (curr1->value < curr2->value) {
+            prev->next = curr1->next;
+            curr1 = curr1->next;
+        } else if (curr1->value > curr2->value) {
+            curr2 = curr2->next;
+        } else {
+            prev = curr1;
+            curr1 = curr1->next;
+            curr2 = curr2->next;
+        }
     }
-    if(other != nullptr) {
-        prev->next = other;
+
+    while (curr1 != nullptr) {
+        prev->next = curr1->next;
+        curr1 = curr1->next;
     }
-    l2.head = nullptr;
 }
+
+
+
 
 
 using namespace std;
@@ -206,25 +204,26 @@ using namespace std;
 
 // Función para tratar un caso de prueba
 void tratar_caso() {
-
+    // ...
     ListLinkedSingle l1, l2;
-    int aux;
-    cin >> aux;
-    while (aux != 0) {
+    int n, aux;
+    cin >> n;
+    for (int i = 0; i < n; ++i) {
+        cin >> aux;
         l1.push_back(aux);
-        cin >> aux;
+
     }
-    cin >> aux;
-    while (aux != 0) {
+    cin >> n;
+    for (int i = 0; i < n; ++i) {
+        cin >> aux;
         l2.push_back(aux);
-        cin >> aux;
     }
-    l1.merge(l2);
+
+    l1.intersect(l2);
     l1.display();
     cout << endl;
+    // ...
 }
-
-
 int main() {
 
 #ifndef DOMJUDGE
@@ -233,7 +232,7 @@ int main() {
 #endif
     int numero_casos;
     cin >> numero_casos;
-    ListLinkedSingle l1;
+
 // Llamamos a `tratar_caso` hasta que se agoten los casos de prueba
     for (int i = 0; i < numero_casos; i++) {
         tratar_caso();

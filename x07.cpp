@@ -1,10 +1,10 @@
-// Mezclar dos listas enlazadas
-// ----------------------------
+// Duplicar una lista enlazada simple
+// ----------------------------------
 // Estructuras de datos
-#include <fstream>
+
 #include <iostream>
 #include <cassert>
-
+#include <fstream>
 /*
  * Implementación del TAD Lista mediante listas enlazadas simples.
  */
@@ -77,17 +77,14 @@ public:
 
     void display() const { display(std::cout); }
 
-    void merge(ListLinkedSingle &other);
+    void duplicate();
 
 private:
     Node *head;
 
     void delete_list(Node *start_node);
-
     Node *last_node() const;
-
     Node *nth_node(int n) const;
-
     Node *copy_nodes(Node *start_node) const;
 };
 
@@ -172,32 +169,17 @@ void ListLinkedSingle::display(std::ostream &out) const {
     out << "]";
 }
 
-/*
- * 2 7 10  0
-    1 2 3 4 5 6 14 20 0
- */
-// Implementa aquí la función pedida
-void ListLinkedSingle::merge(ListLinkedSingle &l2) {
-    Node* prev = head;
-    Node* current  = head->next;
-    Node* other = l2.head->next;
-    while (current != nullptr && other != nullptr) {
-        if(current->value > other->value) {
-            Node* next2 = other->next;
-            prev->next = other;
-            other->next = current;
-            prev = other;
-            other = next2;
-        } else {
-            prev = current;
-            current = current->next;
-        }
 
+// Implementa aquí la función pedida
+void ListLinkedSingle::duplicate() {
+    Node* current = head->next;
+    Node* prev = head;
+    while (current != nullptr) {
+        Node* jose = new Node{current->value, current};
+        prev->next = jose;
+        prev = current;
+        current = current->next;
     }
-    if(other != nullptr) {
-        prev->next = other;
-    }
-    l2.head = nullptr;
 }
 
 
@@ -206,43 +188,32 @@ using namespace std;
 
 // Función para tratar un caso de prueba
 void tratar_caso() {
-
-    ListLinkedSingle l1, l2;
+    ListLinkedSingle lista;
     int aux;
     cin >> aux;
     while (aux != 0) {
-        l1.push_back(aux);
+        lista.push_back(aux);
         cin >> aux;
     }
-    cin >> aux;
-    while (aux != 0) {
-        l2.push_back(aux);
-        cin >> aux;
-    }
-    l1.merge(l2);
-    l1.display();
-    cout << endl;
+    lista.duplicate();
+    lista.display(cout);
+    cout << '\n';
 }
 
-
 int main() {
-
 #ifndef DOMJUDGE
     std::ifstream in("sample.in");
     auto cinbuf = std::cin.rdbuf(in.rdbuf());
 #endif
-    int numero_casos;
-    cin >> numero_casos;
-    ListLinkedSingle l1;
-// Llamamos a `tratar_caso` hasta que se agoten los casos de prueba
-    for (int i = 0; i < numero_casos; i++) {
+
+    int num_casos;
+    cin >> num_casos;
+
+    for (int i = 0; i < num_casos; ++i)
         tratar_caso();
-
-    }
-
-// Comenta esto también si has comentado lo anterior.
 #ifndef DOMJUDGE
     std::cin.rdbuf(cinbuf);
 #endif
+
     return 0;
 }

@@ -46,48 +46,34 @@ using namespace std;
 
 
 bool tratar_caso() {
-    int n, s, aux, k = 1, poslastPila = 0;
+    int n, s, aux, k = 1, poslastPila = 1;
     cin >> n >> s;
     stack <int> pila;
-    deque<int> dobleCola;
+    deque<pair<int, int>> dobleCola;
     if (!cin) return false;
-    for (int i = 0; i < n; ++i) {
-        /*
+
+
         cin >> aux;
-        if(pila.empty()) {
-            poslastPila = 1;
-            pila.push(aux);
-        } else if(pila.top() < aux) {
-            poslastPila = 1;
-
-            pila.pop();
-            pila.push(aux);
-
+        int j  = 0;
+        while (j < s) {
+            //ordenar de mayor a menor
+            dobleCola.push_front({aux, abs(s-j)});
+            cin >> aux;
+            j++;
         }
-        if(k == s || s == 1) {
-            k--;
-            cout << pila.top() << " ";
-            if(poslastPila >= s) pila.pop();
-        }
-        k++;
-        poslastPila++;*/
-        cin >> aux;
-        if(dobleCola.empty()) {
-            dobleCola.push_front(aux);
+        int i = s;
+        while (i < 8) {
+            cin >> aux;
+            if(aux > dobleCola.back().first || dobleCola.back().second == s) {
+                dobleCola.pop_back();
 
-        } else {
-            if (aux > dobleCola.front()) {
-                dobleCola.push_back(dobleCola.front());
-                dobleCola.pop_front();
-                dobleCola.push_front(aux);
             }
-        }
-        if(k == s) {
-
+            i++;
         }
 
 
-    }
+
+
     cout << '\n';
 
 

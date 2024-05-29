@@ -172,29 +172,27 @@ void ListLinkedSingle::display(std::ostream &out) const {
 
 
 void ListLinkedSingle::reverse_segment(int index, int length) {
-    if (index < 0 || length <= 0 ) return;
-
-    Node* prev_start = head;
-    for (int i = 0; i < index; ++i) {
-        if (prev_start->next == nullptr) return;
-        prev_start = prev_start->next;
-    }
-
-    Node* start = prev_start->next;
-    if (start == nullptr) return;
-
-    Node* current = start;
+    if (index < 0 || length <= 0) return;
     Node* prev = nullptr;
+    Node* current = head->next;
     Node* next = nullptr;
-
-    for (int i = 0; i < length && current != nullptr; ++i) {
+    Node* inicio = head;
+    Node* end;
+    for (int i = 0; i < index; ++i) {
+        inicio = current;
+        current = current->next;
+    }
+    end = current;
+    for (int j = 0; current != nullptr && j < length; ++j) {
         next = current->next;
         current->next = prev;
         prev = current;
-        current= next;
+        current = next;
     }
-    start->next = current;
-    prev_start->next = prev;
+
+   inicio->next = prev;
+    end->next = current;
+
 }
 
 
