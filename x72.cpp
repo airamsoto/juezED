@@ -1,197 +1,231 @@
-//
-// Created by airam on 23/05/2024.
-//
-/*
- * add song cancion artista duracion si existe una cancion con el mismo nombre dara error
- * addToPlaylist añade la cancion al final de la lista de reproduccion si la cancion ya estaba no hace nada y si no esta en el ipud da error
- * current devuelve la primera cancion de la lista de repoduccion, da error si la lista es vacia
- * play la primera cancion de la lista de reproduccion se elimina de la lista y se registra como reproducida, si la lista es vacia NO TIENE EFECTO
- * totalTime devuelve la ssuma de las duraciones de canciones de la lista si es vacia devuelve 0
- * recent devuelve la lista de las ultima reproducidas (n) de mas reciente a antigua, si n > listareproducidas -> envia toda la lista si una cancion se ha reproducido mas de una vez solo figura 1
- * deletesong elimina all the rastro de la cancion en el ipud, si la cancion no existe no hace nada
- */
 
-// iPud
-// ----
-// Estructuras de datos
-
-// Añade los #include que creas necesarios
 
 #include <iostream>
+#include <iomanip>
 #include <fstream>
-#include <vector>
+#include<unordered_map>
 #include <list>
-#include <unordered_map>
+#include <exception>
 #include <unordered_set>
+#include <vector>
+#include <stdexcept>
 
-using namespace std;
-
-//TODO FALLA EN EL RECENT QUE CUADNO PONES UNA NO DEVUELVE LA ULTIMA
-class iPud {
+class TAD {
 public:
-    iPud() {}
 
-    void addSong(const string &name, const string &artist, int duration) {
+    TAD(): duracion_total(0){}
 
-        if (cancionesDuracion.count(name)) throw std::domain_error("Error");
-        cancionesDuracion[name] = duration;
-    }
-
-    void addToPlaylist(const string &name) {
-        if (!cancionesDuracion.count(name)) throw std::domain_error("Error");
-        if (!playListSet.count(name)) {
-            playList.push_back(name);
-            playListSet.insert(name);
-
-            duracion += cancionesDuracion[name];
-            playlistIterators[name] = --playList.end();
-
+    void addSong(std::string S, std::string A, int D) {
+        if (mapa_canciones.count(S) == 0) {
+            InfoCancion ic = { S,A,D,{},{},false,false};
+            mapa_canciones.insert({S,ic});
+        }
+        else {
+            throw std::runtime_error("addSong");
         }
     }
 
-    string current() const {
-        if (playListSet.empty()) throw std::domain_error("Error");
-        return playList.front();
-    }
-
-    void play() {
-        if (!playList.empty()) {
-            duracion -= cancionesDuracion[playList.front()];
-            playListSet.erase(playList.front());
-            playlistIterators[playList.front()] = --playList.end();
-            if(reproducidasSet.count(playList.front())) {
-                auto it = reproducidastIterator[playList.front()];
-                reproducidastIterator.erase(playList.front());
-                reproducidasSet.erase(playList.front());
-                reproducidas.erase(it);
-
+    void addToPlaylist(std::string S) {
+        if (mapa_canciones.count(S)>0 ) {
+            if(cjto_lr.count(S) == 0)
+            {
+                cjto_lr.insert(S);
+                auto it = lr.insert(lr.end(), S);
+                mapa_canciones.at(S).it_lr = it;
+                mapa_canciones.at(S).en_lr = true;
+                duracion_total += mapa_canciones.at(S).duracion;
             }
-            reproducidas.push_front(playList.front());
-            reproducidastIterator[playList.front()] = reproducidas.begin();
-            reproducidasSet.insert(playList.front());
-
-            playList.pop_front();
+        }
+        else {
+            throw std::runtime_error("addToPlaylist");
         }
     }
 
-    int totalTime() const {
-        return duracion;
-    }
-
-    list<string> recent(int n) const {
-        if (n > reproducidas.size()) {
-            n = reproducidas.size();
+    std::string current() {
+        if (!lr.empty()) {
+            return lr.front();
         }
-        auto it = reproducidas.begin();
-        advance(it, n);
-        return list<string>(reproducidas.begin(), it);
+        else {
+            throw std::runtime_error("current");
+        }
     }
 
-    void deleteSong(const string &song) {
-        if (cancionesDuracion.count(song)) {
-            if(reproducidasSet.count(song)) {
-                auto it = reproducidastIterator[song];
-                reproducidastIterator.erase(song);
-                reproducidasSet.erase(song);
-                reproducidas.erase(it);
+    std::string play() {
+        std::string actu = "";
+        if (!lr.empty()) {
+            actu = lr.front();
+            if (cjto_reproducidas.count(actu) == 0) {
+                auto it_rep = reproducidas.insert(reproducidas.begin(), actu);
+                mapa_canciones.at(actu).it_reproducidas = it_rep;
+                mapa_canciones.at(actu).en_reproducidas = true;
+                cjto_reproducidas.insert(actu);
             }
-            if (playListSet.count(song)) duracion -= cancionesDuracion[song];
-            cancionesDuracion.erase(song);
-            playlistIterators.erase(song);
-            playListSet.erase(song);
+            else {
+                auto it_eliminar = mapa_canciones.at(actu).it_reproducidas;
+                reproducidas.erase(it_eliminar);
+                auto it_insertar = reproducidas.insert(reproducidas.begin(), actu);
+                mapa_canciones.at(actu).it_reproducidas = it_insertar;
+            }
+            duracion_total -= mapa_canciones.at(actu).duracion;
+            mapa_canciones.at(actu).en_lr = false;
+            lr.erase(lr.begin());
+            cjto_lr.erase(actu);
+        }
+        return actu;
+    }
 
+    int totalTime() {
+        return duracion_total;
+    }
 
+    std::vector<std::string> recent(int N) {
+        std::vector<std::string> dev;
 
+        auto iterar = reproducidas.begin();
+
+        while (iterar!=reproducidas.end() && (int)dev.size() < N) {
+            std::string aux = *iterar;
+            dev.push_back(aux);
+            iterar++;
+        }
+
+        return dev;
+    }
+
+    void deleteSong(std::string S) {
+        if (mapa_canciones.count(S) > 0) {
+            if (mapa_canciones.at(S).en_lr) {
+                auto it_lr_ = mapa_canciones.at(S).it_lr;
+                lr.erase(it_lr_);
+                cjto_lr.erase(S);
+                duracion_total -= mapa_canciones.at(S).duracion;
+            }
+
+            if (mapa_canciones.at(S).en_reproducidas) {
+                auto it_repr= mapa_canciones.at(S).it_reproducidas;
+                reproducidas.erase(it_repr);
+                cjto_reproducidas.erase(S);
+            }
+            mapa_canciones.erase(S);
         }
 
     }
 
 
 private:
-    unordered_map<string, int> cancionesDuracion;
-    list<string> playList;
-    unordered_set<string> playListSet;
-    list<string> reproducidas;
-    unordered_set<string> reproducidasSet;
-    int duracion = 0;
-    unordered_map<string, list<string>::iterator> playlistIterators;
-    unordered_map<string, list<string>::iterator>  reproducidastIterator;
+
+    struct InfoCancion {
+        std::string titulo;
+        std::string artista;
+        int duracion;
+        std::list<std::string>::iterator it_lr;
+        std::list<std::string>::iterator it_reproducidas;
+        bool en_lr;
+        bool en_reproducidas;
+    };
+
+    std::unordered_map<std::string, InfoCancion> mapa_canciones;
+    std::list<std::string> lr;
+    std::unordered_set<std::string> cjto_lr;
+    std::list<std::string> reproducidas;
+    std::unordered_set<std::string> cjto_reproducidas;
+    int duracion_total;
 
 };
 
-
-bool tratar_caso() {
-    string comando;
-    cin >> comando;
-    if (cin.eof()) {
+// Resuelve un caso de prueba, leyendo de la entrada la
+// configuración, y escribiendo la respuesta
+bool resuelveCaso() {
+    // leer los datos de la entrada
+    std::string opp;
+    std::cin >> opp;
+    if (!std::cin)
         return false;
-    }
 
-    iPud ipud;
+    TAD tad;
 
-    while (comando != "FIN") {
+    while (opp != "FIN") {
         try {
-            if (comando == "addSong") {
-                string nombre, artista;
+            if (opp == "addSong") {
+                std::string nombre, autor;
                 int duracion;
-                cin >> nombre >> artista >> duracion;
-                ipud.addSong(nombre, artista, duracion);
-            } else if (comando == "addToPlaylist") {
-                string nombre;
-                cin >> nombre;
-                ipud.addToPlaylist(nombre);
-            } else if (comando == "current") {
-                ipud.current();
-            } else if (comando == "play") {
-                try {
-                    string cancion = ipud.current();
-                    ipud.play();
-                    cout << "Sonando " << cancion << "\n";
-                } catch (exception &e) {
-                    cout << "No hay canciones en la lista\n";
-                }
-            } else if (comando == "totalTime") {
-                int tiempo = ipud.totalTime();
-                cout << "Tiempo total " << tiempo << "\n";
-            } else if (comando == "recent") {
-                int n;
-                cin >> n;
-                list<string> canciones = ipud.recent(n);
-                if (!canciones.empty()) {
-                    cout << "Las " << canciones.size() << " mas recientes\n";
-                    for (const string &s: canciones) {
-                        cout << "    " << s << "\n";
-                    }
-                } else {
-                    cout << "No hay canciones recientes\n";
-                }
-            } else if (comando == "deleteSong") {
-                string nombre;
-                cin >> nombre;
-                ipud.deleteSong(nombre);
+                std::cin >> nombre >> autor >> duracion;
+                tad.addSong(nombre, autor, duracion);
             }
-        } catch (exception &e) {
-            cout << "ERROR " << comando << "\n";
+            else if (opp == "addToPlaylist") {
+                std::string cancion;
+                std::cin >> cancion;
+                tad.addToPlaylist(cancion);
+            }
+            else if (opp == "current") {
+                tad.current();
+            }
+            else if (opp == "play") {
+                std::string reproducida = tad.play();
+                if (reproducida != "") {
+                    std::cout << "Sonando " << reproducida;
+                }
+                else {
+                    std::cout << "No hay canciones en la lista";
+                }
+                std::cout << '\n';
+            }
+            else if (opp == "totalTime") {
+                int duracion_total = tad.totalTime();
+                std::cout << "Tiempo total " << duracion_total << '\n';
+            }
+            else if (opp == "recent") {
+                int N;
+                std::cin >> N;
+                std::vector<std::string>res = tad.recent(N);
+                if (res.size() > 0) {
+                    std::cout << "Las " << res.size() << " mas recientes\n";
+                    for (int i = 0; i < (int)res.size(); i++) {
+                        std::cout <<"    "<< res[i] << '\n';
+                    }
+                }
+                else {
+                    std::cout << "No hay canciones recientes\n";
+                }
+
+            }
+            else if (opp == "deleteSong") {
+                std::string cancion;
+                std::cin >> cancion;
+                tad.deleteSong(cancion);
+            }
+
+
         }
-        cin >> comando;
+        catch (std::exception& e) {
+            std::cout << "ERROR " << e.what()<<'\n';
+        }
+
+        std::cin >> opp;
     }
 
-    cout << "---\n";
+    std::cout << "---\n";
 
     return true;
+
 }
 
-
 int main() {
+    // Para la entrada por fichero.
+    // Comentar para acepta el reto
 #ifndef DOMJUDGE
-    ifstream in("sample.in");
-    auto cinbuf = cin.rdbuf(in.rdbuf());
+    std::ifstream in("datos.txt");
+    auto cinbuf = std::cin.rdbuf(in.rdbuf()); //save old buf and redirect std::cin to casos.txt
 #endif
 
-    while (tratar_caso()) {}
 
-#ifndef DOMJUDGE
-    cin.rdbuf(cinbuf);
+    while (resuelveCaso());
+
+
+    // Para restablecer entrada. Comentar para acepta el reto
+#ifndef DOMJUDGE // para dejar todo como estaba al principio
+    std::cin.rdbuf(cinbuf);
+    system("PAUSE");
 #endif
 
     return 0;

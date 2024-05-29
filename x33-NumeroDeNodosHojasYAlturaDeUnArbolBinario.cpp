@@ -101,32 +101,32 @@ template <typename T> BinTree<T> read_tree(std::istream &in) {
 
 using namespace std;
 
+tuple<int, int, int> calculalosTres (const BinTree<char> &tree) {
+    if(tree.empty()) {
+        return {0,0,0};
+    } else if(tree.left().empty() && tree.right().empty()) {
+        return {1,1,1};
+    } else {
+        auto[nodosIzq, hojasIzq, alturaIzq] = calculalosTres(tree.left());
+        auto[nodosDer, hojasDer, alturaDer] = calculalosTres(tree.right());
+        int altura = max(alturaIzq, alturaDer) +1;
+        return {nodosDer + nodosIzq + 1 , hojasDer + hojasIzq, altura};
+    }
 
+
+}
 
 // Implementa las funciones recursivas que sean necesarias.
-//número de nodos, cuántos de ellos son hojas, y cuál es la altura del árbol
-
-tuple<int, int, int> alturaYDemas(const BinTree<char>&tree) {
-    if(tree.empty()) return {0,0,0};
-    else {
-
-        auto [nodosIzq, hojasIzq, alturaIzq] = alturaYDemas(tree.left());
-        auto [nodosDer, hojasDer, alturaDer] = alturaYDemas(tree.right());
-        int hojas = hojasDer + hojasIzq;
-        if (tree.left().empty() && tree.right().empty()) hojas++;
 
 
-        return {nodosIzq+nodosDer+1, hojas, 1+ max(alturaDer, alturaIzq)};
-    }
-}
 void tratar_caso() {
     // Introduce aquí el código para tratar un caso de prueba.
 
     BinTree<char> t = read_tree<char>(cin);
-    auto [nodos, hojas, altura ] = alturaYDemas(t);
-    cout << nodos << " " << hojas << " " << altura << endl;
-
+    auto[jose, pedro , miguel] = calculalosTres(t);
+    cout << jose << " " << pedro << " " << miguel << '\n';
 }
+
 
 int main() {
 #ifndef DOMJUDGE

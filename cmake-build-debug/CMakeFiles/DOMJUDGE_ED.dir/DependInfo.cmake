@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/airam/git/juezED/x11.cpp" "CMakeFiles/DOMJUDGE_ED.dir/x11.cpp.obj" "gcc" "CMakeFiles/DOMJUDGE_ED.dir/x11.cpp.obj.d"
+  "C:/Users/airam/git/juezED/x72.cpp" "CMakeFiles/DOMJUDGE_ED.dir/x72.cpp.obj" "gcc" "CMakeFiles/DOMJUDGE_ED.dir/x72.cpp.obj.d"
   )
 
 # Targets to which this target links.

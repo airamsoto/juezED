@@ -84,8 +84,11 @@ private:
     Node *head;
 
     void delete_list(Node *start_node);
+
     Node *last_node() const;
+
     Node *nth_node(int n) const;
+
     Node *copy_nodes(Node *start_node) const;
 };
 
@@ -171,32 +174,33 @@ void ListLinkedSingle::display(std::ostream &out) const {
 }
 
 
-void ListLinkedSingle::intersect(const ListLinkedSingle &other) {
+void ListLinkedSingle::intersect(const ListLinkedSingle &l2) {
+    Node *current = head->next;
     Node *prev = head;
-    Node *curr1 = head->next;
-    Node *curr2 = other.head->next;
-
-    while (curr1 != nullptr && curr2 != nullptr) {
-        if (curr1->value < curr2->value) {
-            prev->next = curr1->next;
-            curr1 = curr1->next;
-        } else if (curr1->value > curr2->value) {
-            curr2 = curr2->next;
+    Node *other = l2.head->next;
+    while (current != nullptr && other != nullptr) {
+        if (current->value < other->value) {
+            Node *next = current->next;
+            prev->next = next;
+            current = next;
+        } else if(current->value == other->value){
+            prev = current;
+            current = current->next;
+            other = other->next;
         } else {
-            prev = curr1;
-            curr1 = curr1->next;
-            curr2 = curr2->next;
+            other = other->next;
         }
     }
-
-    while (curr1 != nullptr) {
-        prev->next = curr1->next;
-        curr1 = curr1->next;
+    while (current != nullptr) {
+        Node *next = current->next;
+        prev->next = next;
+        current = next;
     }
+    /*
+     * 1 2 3 4
+     * 2
+     */
 }
-
-
-
 
 
 using namespace std;
@@ -224,6 +228,7 @@ void tratar_caso() {
     cout << endl;
     // ...
 }
+
 int main() {
 
 #ifndef DOMJUDGE

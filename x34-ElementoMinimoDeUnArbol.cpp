@@ -3,13 +3,14 @@
 // Estructuras de datos
 
 
+#include <fstream>
 #include <iostream>
 #include <cassert>
 #include <memory>
-#include <fstream>
 
 // TAD de árboles binarios de búsqueda
-template <class T> class BinTree {
+template<class T>
+class BinTree {
 public:
     BinTree() : root_node(nullptr) {}
 
@@ -75,13 +76,14 @@ private:
     }
 };
 
-template <typename T>
+template<typename T>
 std::ostream &operator<<(std::ostream &out, const BinTree<T> &tree) {
     tree.display(out);
     return out;
 }
 
-template <typename T> BinTree<T> read_tree(std::istream &in) {
+template<typename T>
+BinTree<T> read_tree(std::istream &in) {
     char c;
     in >> c;
     if (c == '.') {
@@ -102,42 +104,34 @@ template <typename T> BinTree<T> read_tree(std::istream &in) {
 using namespace std;
 
 
-
-template <typename T>
+template<typename T>
 T minimo(const BinTree<T> &arbol) {
-    if(arbol.empty()) return {0};
-    else {
-        T izq = arbol.root();
-        T der = arbol.root();
-        if(!arbol.left().empty()) izq = minimo(arbol.left());
-        if(!arbol.right().empty()) der = minimo(arbol.right());
-        return {min(arbol.root(), min (izq, der))};
-    }
+    T izq = arbol.root();
+    T der = arbol.root();
+    if (!arbol.left().empty()) izq = minimo(arbol.left());
+    if (!arbol.right().empty()) der = minimo(arbol.right());
+    return {min(arbol.root(), min(izq, der))};
 }
+
 
 bool tratar_caso() {
-    // Introduce aquí el código para tratar un caso de prueba. Devuelve true si
-    // se ha encontrado un caso de prueba, o false si se ha encontrado con el
-    // fin de fichero.
 
-    // Tendrás que utilizar read_tree<string> o read_tree<int> en función de si la primera línea
-    // leida es N o P.
-    char tipo;
-    cin >> tipo;
+    string aux;
+    cin >> aux;
     if (!cin) return false;
-    if (tipo == 'P') {
-        BinTree<string> t = read_tree<string>(cin);
-        string jose = minimo(t);
-        cout << jose;
+    if (aux == "N") {
+
+        BinTree<int> jose = read_tree<int>(cin);
+        cout << minimo(jose) << '\n';
+
+    } else if (aux == "P") {
+        BinTree<string> jose = read_tree<string>(cin);
+        cout << minimo(jose) << '\n';
+
     }
-    else if (tipo == 'N') {
-        BinTree<int> t = read_tree<int>(cin);
-        int pedro = minimo(t);
-        cout << pedro;
-    }
-    cout << endl;
-return true;
+    return true;
 }
+
 
 int main() {
 #ifndef DOMJUDGE

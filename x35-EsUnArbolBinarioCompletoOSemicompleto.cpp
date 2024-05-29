@@ -100,36 +100,20 @@ template <typename T> BinTree<T> read_tree(std::istream &in) {
 }
 
 using namespace std;
+tuple<bool, bool , int> esCompleto (const BinTree<char> &arbol) {
+    if(arbol.empty()) return {true, true, 0};
+    else {
+
+        auto [completoIzq, semicompletoIzq, nivelIzq] = esCompleto(arbol.left());
+        auto [completoDer, semicompletoDer, nivelDer] = esCompleto(arbol.right());
+        bool completo = completoDer && completoIzq && nivelDer == nivelIzq;
+        bool semi = completo || (completoIzq && completoDer && nivelDer + 1 == nivelIzq) || (semicompletoDer && completoIzq && nivelDer == nivelIzq) || (completoDer && semicompletoIzq && nivelIzq == nivelDer + 1);
+        return {completo, semi, max(nivelIzq, nivelDer) + 1};
+    }
 
 
 
-
-    tuple<bool, bool, int> esCompleto(const BinTree<char> &arbol) {
-        if (arbol.empty()) {
-            return {true, true, 0};
-        }
-else {
-            auto [completoIzq, semicompletoIzq, nivelIzq] = esCompleto(arbol.left());
-            auto [completoDer, semicompletoDer, nivelDer] = esCompleto(arbol.right());
-
-            int nivel = max(nivelIzq, nivelDer) + 1;
-            bool completo = completoIzq && completoDer && (nivelIzq == nivelDer);
-/*
-- Si el izquierdo tiene una altura más que el derecho y ambos son completos, entonces el árbol es semicompleto.
-- Si el izquierdo es semicompleto y el derecho es completo, entonces el árbol también puede ser semicompleto (depende de las alturas).
-- Si el izquierdo es completo y el derecho es semicompleto, entonces el árbol también puede ser semicompleto (depende de las alturas).
- */
-            bool semicompleto = (nivelIzq-nivelDer == 1 && completoDer && completoIzq) || (semicompletoIzq && completoDer && nivelIzq-nivelDer == 1) || (completoIzq && semicompletoDer && nivelIzq == nivelDer);
-
-            return {completo, semicompleto, nivel};
-        }
-
-}
-
-
-
-// Implementa las funciones recursivas que sean necesarias
-
+    }
 
 void tratar_caso() {
     // Introduce aquí el código para tratar un caso de prueba.
