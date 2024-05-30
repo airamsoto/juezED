@@ -1,83 +1,110 @@
+// Misterios de Pekín
+// ------------------
+// Estructuras de datos
+
+// Añade los #include que creas necesarios
+
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <map>
-#include <set>
 #include <unordered_map>
 #include <unordered_set>
+#include <set>
 #include <list>
-#include <stdexcept>
-#include <algorithm>
+
 
 using namespace std;
+
 
 class MisteriosDePekin {
 public:
     MisteriosDePekin(const string &culpable) {
         this->culpable = culpable;
-        sospechosos_ordenados.insert(culpable);
+        cjt_sospechososOrdenados.insert(culpable);
+
+
     }
 
     void anyadir_rasgo(const string &sospechoso, const string &rasgo) {
-        if (jugadores.empty()) {
-            culpables[sospechoso] = {rasgo};
-            rasgos_sospechosos[rasgo].insert(sospechoso);
-            sospechosos_ordenados.insert(sospechoso);
-        } else {
-            throw domain_error("Juego ya empezado");
-        }
+       if(!mapa_jugadores.empty()) throw domain_error ("Juego ya empezado");
+       rasgosSospechosos[rasgo].insert(sospechoso);
+       cjt_sospechososOrdenados.insert(sospechoso);
+
     }
 
     vector<string> sospechosos() const {
 
-        return vector<string>(sospechosos_ordenados.begin(), sospechosos_ordenados.end());
+        return vector<string>{cjt_sospechososOrdenados.begin(), cjt_sospechososOrdenados.end()};
     }
 
     void nuevo_jugador(const string &nombre) {
-        if (jugadores.count(nombre)) {
-            throw domain_error("Jugador existente");
+        if(mapa_jugadores.count(nombre)) throw domain_error ("Jugador existente");
+        mapa_jugadores[nombre];
+        if(puede_detener_culpable(nombre)) {
+            auto it = lista_jugadores_potenciales.insert(lista_jugadores_potenciales.end(), nombre);
+            mapa_potenciales[nombre] = it;
         }
-        jugadores[nombre];
 
     }
 
     void jugador_descarta(const string &jugador, const string &rasgo) {
-        if (!jugadores.count(jugador)) {
-            throw domain_error("Jugador no existente");
-        }
+        if(!mapa_jugadores.count(jugador)) throw domain_error ("Jugador no existente");
+        if(rasgosSospechosos.count(rasgo)) {
+            for (const auto& sospech :rasgosSospechosos[rasgo]) {
+                mapa_jugadores[jugador].insert(sospech);
 
-        if (rasgos_sospechosos.count(rasgo)) {
-            for (const auto &sospechoso: rasgos_sospechosos[rasgo]) {
-                jugadores[jugador].insert(sospechoso);
             }
+        }
+        if(mapa_potenciales.count(jugador) && !puede_detener_culpable(jugador)) {
+            lista_jugadores_potenciales.erase(mapa_potenciales.at(jugador));
+            mapa_potenciales.erase(jugador);
 
         }
+        if(!mapa_potenciales.count(jugador) && puede_detener_culpable(jugador)) {
+            auto it = lista_jugadores_potenciales.insert(lista_jugadores_potenciales.end(), jugador);
+            mapa_potenciales[jugador] = it;
+        }
+
     }
 
     bool jugador_enganyado(const string &jugador) const {
-        if (jugadores.count(jugador)) {
-            return jugadores.at(jugador).count(culpable) == 1;
-        }
-        throw domain_error("Jugador no existente");
+        if(!mapa_jugadores.count(jugador)) throw domain_error ("Jugador no existente");
+        return (mapa_jugadores.at(jugador).count(culpable));
     }
 
     bool puede_detener_culpable(const string &jugador) const {
-        if (jugadores.count(jugador)) {
-            return jugadores.at(jugador).size() == sospechosos_ordenados.size() - 1 &&
-                   !jugadores.at(jugador).count(culpable);
-        }
-        throw domain_error("Jugador no existente");
+        if(!mapa_jugadores.count(jugador)) throw domain_error ("Jugador no existente");
+        const auto &infoJugador = mapa_jugadores.at(jugador);
+        return infoJugador.size() - cjt_sospechososOrdenados.size() == -1 && !infoJugador.count(culpable);
+    }
+    vector<string> ganadores_potenciales() const {
+
+        return {lista_jugadores_potenciales.begin(), lista_jugadores_potenciales.end()};
+
     }
 
 
 private:
+    using jugador = string;
+    using sospechoso = string;
+    using rasgos = string;
     string culpable;
-    unordered_map<string, unordered_set<string>> culpables;
-    unordered_map<string, unordered_set<string>> jugadores;
-    unordered_map<string, unordered_set<string>> rasgos_sospechosos;
-    set<string> sospechosos_ordenados;
-};
+    unordered_map<jugador, unordered_set<sospechoso>> mapa_jugadores;
+    unordered_map<rasgos, unordered_set<sospechoso>> rasgosSospechosos;
+    set<sospechoso> cjt_sospechososOrdenados;
 
+
+    unordered_map<jugador, list<jugador>::iterator> mapa_potenciales;
+    list<jugador> lista_jugadores_potenciales;
+
+};
+void imprime_lista(const vector<string> &lista) {
+    bool primero = true;
+    for (const auto &s : lista) {
+        cout << (primero ? "" : " ") << s;
+        primero = false;
+    }
+}
 bool tratar_caso() {
     string culpable;
     cin >> culpable;
@@ -125,6 +152,9 @@ bool tratar_caso() {
                 bool puede = mp.puede_detener_culpable(nombre);
                 cout << nombre << (puede ? "" : " no") << " puede detener al culpable" << endl;
 
+            } else if (comando == "ganadores_potenciales") {
+                imprime_lista(mp.ganadores_potenciales());
+                cout << endl;
             }
         } catch (const exception &e) {
             cout << "ERROR: " << e.what() << endl;

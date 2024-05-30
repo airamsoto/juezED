@@ -21,69 +21,51 @@ using namespace std;
 class OficinaEmpleo {
 public:
     void altaOficina(const string &nombre, const string &empleo) {
-        if (!personaEmpleos[nombre].count(empleo)) {
-            personaEmpleos[nombre].insert(empleo);
-            empleosPersona[empleo].push_back(nombre);
+        if (!personaEmpleo[nombre].count(empleo)) {
+            auto it = empleosPersona[empleo].insert(empleosPersona[empleo].end(), nombre);
+            empleoIterators[empleo][nombre] = it;
+            personaEmpleo[nombre].insert(empleo);
+            personaEmpleoOrdenada[nombre].insert(empleo);
 
-
-
-            empleoIterators[empleo][nombre] = --empleosPersona[empleo].end(); //todo revisar ejercicio 70 para ver si lo hice iugal
-
-
-
-
-            personaEmpleosOrdenada[nombre].insert(empleo);
         }
     }
-
     string ofertaEmpleo(const string &empleo) {
-        if (!empleosPersona.count(empleo)) {
-            throw domain_error("No existen personas apuntadas a este empleo");
-        }
-
-        string persona = empleosPersona[empleo].front();
-        empleosPersona[empleo].pop_front();
+        if(!empleosPersona.count(empleo)) throw domain_error ("No existen personas apuntadas a este empleo");
+        auto persona = empleosPersona[empleo].front();
 
 
-        empleoIterators[empleo].erase(persona);
-
-
-
-        if (empleosPersona[empleo].empty()) {
-            empleosPersona.erase(empleo);
-            empleoIterators.erase(empleo);
-        }
-
-        for (const auto &e : personaEmpleos[persona]) {
-            auto it = empleoIterators[e].find(persona);
-            if (it != empleoIterators[e].end()) {
-                empleosPersona[e].erase(it->second);
-                empleoIterators[e].erase(it);
-                if (empleosPersona[e].empty()) {
-                    empleosPersona.erase(e);
-                    empleoIterators.erase(e);
-                }
+        for (const auto &empleosDePersona : personaEmpleo[persona]) {
+            auto it = empleoIterators[empleosDePersona].at(persona);
+            empleosPersona[empleosDePersona].erase(it);
+            empleoIterators[empleosDePersona].erase(persona);
+            if(empleosPersona[empleosDePersona].empty()) {
+                empleoIterators.erase(empleosDePersona);
+                empleosPersona.erase(empleosDePersona);
             }
         }
-
-        personaEmpleos.erase(persona);
-        personaEmpleosOrdenada.erase(persona);
-
+        personaEmpleo.erase(persona);
+        personaEmpleoOrdenada.erase(persona);
         return persona;
     }
 
     vector<string> listadoEmpleos(const string &persona) const {
-        if (!personaEmpleos.count(persona)) {
-            throw domain_error("Persona inexistente");
-        }
-        return {personaEmpleosOrdenada.at(persona).begin(), personaEmpleosOrdenada.at(persona).end()};
+        if(personaEmpleo.count(persona)) {
+            return {personaEmpleoOrdenada.at(persona).begin(), personaEmpleoOrdenada.at(persona).end()};
+        } else throw domain_error ("Persona inexistente");
+
     }
 
 private:
-    unordered_map<string, list<string>> empleosPersona;
-    unordered_map<string, unordered_map<string, list<string>::iterator>> empleoIterators;
-    unordered_map<string, set<string>> personaEmpleosOrdenada;
-    unordered_map<string, unordered_set<string>> personaEmpleos;
+    using persona = string;
+    using empleo = string;
+
+    unordered_map<empleo, list<persona>> empleosPersona;
+    unordered_map<empleo, unordered_map<persona, list<persona>::iterator>> empleoIterators;
+    unordered_map<persona, unordered_set<empleo>> personaEmpleo;
+    unordered_map<persona, set<empleo>> personaEmpleoOrdenada;
+
+
+
 };
 
 bool tratar_caso() {

@@ -1,16 +1,7 @@
-addSong HumanTouch BruceSpringsteen 392
-addSong BornToRun BruceSpringsteen 270
-addToPlaylist BornToRun
-addToPlaylist HumanTouch
-play
-totalTime
-addSong LuckyTown BruceSpringsteen 207
-addToPlaylist LuckyTown
-play
-play
-deleteSong HumanTouch
-recent 2
-FIN
-play
-current
-FIN
+6
+(((. 4 .) 2 (. 5 .)) 1 (. 3 (. 6 .)))
+((((. 4 .) 3 .) 7 (. 9 (. 8 .))) 1 ((. 27 .) 14 (. 3 .)))
+(((. 2 .) 4 .) 7 (((. 1 .) 5 .) 3 (. 6 .)))
+(((. 6 .) 4 (. 7 .)) 3 (. 5 .))
+(. 4 .)
+.

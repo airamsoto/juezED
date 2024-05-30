@@ -1,6 +1,9 @@
 // Área más grande en un árbol binario
 // -----------------------------------
 // Estructuras de datos
+// Área más grande en un árbol binario
+// -----------------------------------
+// Estructuras de datos
 
 
 #include <iostream>
@@ -10,145 +13,127 @@
 #include <fstream>
 
 // TAD de árboles binarios de búsqueda
-template<class T>
-class BinTree {
-public:
-    BinTree() : root_node(nullptr) {}
+    template <class T> class BinTree {
+    public:
+        BinTree() : root_node(nullptr) {}
 
-    BinTree(const T &elem)
-            : root_node(std::make_shared<TreeNode>(nullptr, elem, nullptr)) {}
+        BinTree(const T &elem)
+                : root_node(std::make_shared<TreeNode>(nullptr, elem, nullptr)) {}
 
-    BinTree(const BinTree &left, const T &elem, const BinTree &right)
-            : root_node(std::make_shared<TreeNode>(left.root_node, elem,
-                                                   right.root_node)) {}
+        BinTree(const BinTree &left, const T &elem, const BinTree &right)
+                : root_node(std::make_shared<TreeNode>(left.root_node, elem,
+                                                       right.root_node)) {}
 
-    bool empty() const { return root_node == nullptr; }
+        bool empty() const { return root_node == nullptr; }
 
-    const T &root() const {
-        assert(root_node != nullptr);
-        return root_node->elem;
-    }
+        const T &root() const {
+            assert(root_node != nullptr);
+            return root_node->elem;
+        }
 
-    BinTree left() const {
-        assert(root_node != nullptr);
-        BinTree result;
-        result.root_node = root_node->left;
-        return result;
-    }
+        BinTree left() const {
+            assert(root_node != nullptr);
+            BinTree result;
+            result.root_node = root_node->left;
+            return result;
+        }
 
-    BinTree right() const {
-        assert(root_node != nullptr);
-        BinTree result;
-        result.root_node = root_node->right;
-        return result;
-    }
+        BinTree right() const {
+            assert(root_node != nullptr);
+            BinTree result;
+            result.root_node = root_node->right;
+            return result;
+        }
 
-    void display(std::ostream &out) const { display_node(root_node, out); }
+        void display(std::ostream &out) const { display_node(root_node, out); }
 
-private:
-    // Las definiciones de TreeNode y NodePointer dependen recursivamente
-    // la una de la otra. Por eso declaro 'struct TreeNode;' antes de NodePointer
-    // para que el compilador sepa, cuando analice la definición de NodePointer,
-    // que TreeNode va a ser definida más adelante.
+    private:
+        // Las definiciones de TreeNode y NodePointer dependen recursivamente
+        // la una de la otra. Por eso declaro 'struct TreeNode;' antes de NodePointer
+        // para que el compilador sepa, cuando analice la definición de NodePointer,
+        // que TreeNode va a ser definida más adelante.
 
-    struct TreeNode;
-    using NodePointer = std::shared_ptr<TreeNode>;
+        struct TreeNode;
+        using NodePointer = std::shared_ptr<TreeNode>;
 
-    struct TreeNode {
-        TreeNode(const NodePointer &left, const T &elem, const NodePointer &right)
-                : elem(elem), left(left), right(right) {}
+        struct TreeNode {
+            TreeNode(const NodePointer &left, const T &elem, const NodePointer &right)
+                    : elem(elem), left(left), right(right) {}
 
-        T elem;
-        NodePointer left, right;
+            T elem;
+            NodePointer left, right;
+        };
+
+        NodePointer root_node;
+
+        static void display_node(const NodePointer &root, std::ostream &out) {
+            if (root == nullptr) {
+                out << ".";
+            } else {
+                out << "(";
+                display_node(root->left, out);
+                out << " " << root->elem << " ";
+                display_node(root->right, out);
+                out << ")";
+            }
+        }
     };
 
-    NodePointer root_node;
-
-    static void display_node(const NodePointer &root, std::ostream &out) {
-        if (root == nullptr) {
-            out << ".";
-        } else {
-            out << "(";
-            display_node(root->left, out);
-            out << " " << root->elem << " ";
-            display_node(root->right, out);
-            out << ")";
-        }
+    template <typename T>
+    std::ostream &operator<<(std::ostream &out, const BinTree<T> &tree) {
+        tree.display(out);
+        return out;
     }
-};
 
-template<typename T>
-std::ostream &operator<<(std::ostream &out, const BinTree<T> &tree) {
-    tree.display(out);
-    return out;
-}
-
-template<typename T>
-BinTree<T> read_tree(std::istream &in) {
-    char c;
-    in >> c;
-    if (c == '.') {
-        return BinTree<T>();
-    } else {
-        assert(c == '(');
-        BinTree<T> left = read_tree<T>(in);
-        T elem;
-        in >> elem;
-        BinTree<T> right = read_tree<T>(in);
+    template <typename T> BinTree<T> read_tree(std::istream &in) {
+        char c;
         in >> c;
-        assert(c == ')');
-        BinTree<T> result(left, elem, right);
-        return result;
-    }
-}
-
-using namespace std;
-
-
-int area_mayor_sin_barreras(const BinTree<bool> &tree, int &mejorCaso) {
-
-    if (tree.empty()) return 0;
-    else {
-
-        int nodosIzquierda = area_mayor_sin_barreras(tree.left(), mejorCaso);
-        int nodosDerecha = area_mayor_sin_barreras(tree.right(), mejorCaso);
-        int actual = nodosDerecha + nodosIzquierda;
-
-        if (!tree.left().empty() && tree.left().root() == 1) {
-            actual -= nodosIzquierda;
+        if (c == '.') {
+            return BinTree<T>();
+        } else {
+            assert(c == '(');
+            BinTree<T> left = read_tree<T>(in);
+            T elem;
+            in >> elem;
+            BinTree<T> right = read_tree<T>(in);
+            in >> c;
+            assert(c == ')');
+            BinTree<T> result(left, elem, right);
+            return result;
         }
-        if (!tree.right().empty() && tree.right().root() == 1) {
-            actual -= nodosDerecha;
-        }
-        if (tree.root() == 0) actual++;
-        else {
-            actual = 0;
-            nodosIzquierda = 0;
-            nodosDerecha = 0;
-        }
-        mejorCaso = max(mejorCaso, actual);
+    }
 
-        return max(actual, max(nodosDerecha, nodosIzquierda));
+    using namespace std;
+
+
+    pair<int,int> area_mayor_sin_barreras(const BinTree<bool> &tree) {
+        // Implementa aquí la función pedida. No puedes
+        // modificar la cabecera, pero puedes apoyarte en funciones
+        // auxiliares, si necesitas devolver más de un resultado.
+        if(tree.empty()) return {0,0};
+        else if(tree.left().empty() && tree.right().empty()){
+            if( tree.root() == 0) return {1,1};
+            else return {0,0};
+        } else {
+            auto [areaIzq, maxAreaIzq] = area_mayor_sin_barreras(tree.left());
+            auto [areaDer, maxAreaDer] = area_mayor_sin_barreras(tree.right());
+            if(tree.root() == 0) {
+                int actual = areaIzq + areaDer + 1;
+                int mejor = max (maxAreaDer, maxAreaIzq);
+                return {actual, max(mejor, actual)};
+            } else {
+                return {0, max(maxAreaIzq, maxAreaDer)};
+            }
+        }
 
     }
-}
-
-int area_mayor_sin_barreras(const BinTree<bool> &tree) {
-    if (tree.empty()) {
-        return 0;
-    } else {
-        int mejorCaso = 0;
-        area_mayor_sin_barreras(tree, mejorCaso);
-        return mejorCaso;
-    }
-}
 
 
 // Función que trata un caso de prueba
-void tratar_caso() {
-    BinTree<bool> t = read_tree<bool>(cin);
-    cout << area_mayor_sin_barreras(t) << "\n";
-}
+    void tratar_caso() {
+        BinTree<bool> t = read_tree<bool>(cin);
+        std::cout << area_mayor_sin_barreras(t).second << "\n";
+    }
 
 
 int main() {

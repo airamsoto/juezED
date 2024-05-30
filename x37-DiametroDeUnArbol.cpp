@@ -10,7 +10,8 @@
 #include <fstream>
 
 // TAD de árboles binarios de búsqueda
-template <class T> class BinTree {
+template<class T>
+class BinTree {
 public:
     BinTree() : root_node(nullptr) {}
 
@@ -76,13 +77,14 @@ private:
     }
 };
 
-template <typename T>
+template<typename T>
 std::ostream &operator<<(std::ostream &out, const BinTree<T> &tree) {
     tree.display(out);
     return out;
 }
 
-template <typename T> BinTree<T> read_tree(std::istream &in) {
+template<typename T>
+BinTree<T> read_tree(std::istream &in) {
     char c;
     in >> c;
     if (c == '.') {
@@ -102,36 +104,23 @@ template <typename T> BinTree<T> read_tree(std::istream &in) {
 
 using namespace std;
 
-
-// Define las funciones auxiliares que sean necesarias
-template <typename T>
-int calculaAltura (const BinTree<T>&t){
-    if(t.empty()) return 0;
-    else return 1 + max(calculaAltura(t.left()), calculaAltura( t.right()));
-}
-
-template <typename T>
-pair<int, int> diametro(const BinTree<T> &t) {
-    if (t.empty()){
-        return {0,0};
-    } else {
-        auto[alturaIzq, diametroIzq] = diametro(t.left());
-        auto[alturaDer, diametroDer] = diametro(t.right());
-        int altura =1 + max (alturaDer, alturaIzq);
-        int diametroGlobal = 1 + alturaDer +alturaIzq;
-
-        return {altura, max (diametroGlobal, max (diametroDer, diametroIzq))};
-
+//TODO DIAMETRO
+pair<int, int> diametro(const BinTree<char> &t) {
+    if (t.empty()) return {0, 0};
+    else {
+        auto [alturaMaxIzq, diametroIzq] = diametro(t.left());
+        auto [alturaMaxDer, diametroDer] = diametro(t.right());
+        int diametroGlobal = alturaMaxDer + alturaMaxIzq + 1;
+        return{max(alturaMaxDer, alturaMaxIzq) + 1, max (max(diametroIzq, diametroDer), diametroGlobal)};
     }
-    // ...
 }
 
 
 void tratar_caso() {
     BinTree<char> t = read_tree<char>(cin);
-    cout << diametro(t).second << "\n";
-}
+    std::cout << diametro(t).second << '\n';
 
+}
 
 
 int main() {

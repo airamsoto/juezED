@@ -7,7 +7,7 @@
 #include <cassert>
 #include <memory>
 #include <utility>
-
+#include <fstream>
 // TAD de árboles binarios de búsqueda
 template <class T> class BinTree {
 public:
@@ -103,17 +103,33 @@ using namespace std;
 
 
 template <typename T>
-bool estable(const BinTree<T> &arbol) {
-    // Implementa aquí la función pedida. No puedes
-    // modificar la cabecera, pero puedes apoyarte en funciones
-    // auxiliares, si necesitas devolver más de un resultado.
+tuple<int, int, bool> estable(const BinTree<T> &arbol) {
+    if(arbol.empty()) return {0, 0, true};
+    else if(arbol.left().empty() && arbol.right().empty()) {
+        return {0,1,true};
+    }
+    else {
+        auto [alturaMinimaIzq, alturaIzq, estableIzq] = estable(arbol.left());
+        auto [alturaMinimader, alturaDer, estableDer] = estable(arbol.right());
+
+        int alturaMin = min (max(alturaIzq, alturaMinimader), max(alturaDer, alturaMinimaIzq))+1;
+        int altura = max(alturaIzq, alturaDer) + 1;
+        bool jose = abs(alturaMinimaIzq - alturaDer) <= 1 && abs(alturaMinimader - alturaIzq) <= 1 && estableIzq && estableDer;
+
+        return {alturaMin, altura, jose };
+
+
+
+    }
+
 }
 
 
 // Función que trata un caso de prueba
 void tratar_caso() {
-    BinTree<char> t = read_tree<char>(cin);
-    cout << (estable(t) ? "SI" : "NO") << "\n";
+    BinTree<int> t = read_tree<int>(cin);
+    auto [jose, pedro,miguel] = estable(t);
+    cout << (miguel ? "SI" : "NO") << "\n";
 }
 
 

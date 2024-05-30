@@ -21,10 +21,12 @@ public:
         estados.insert({nombre, {num_compromisarios}});
 
 
+
     }
 
     void sumar_votos(const string &estado, const string &partido, int num_votos) {
-        tEstado &estadoBuscado = buscar_estado(estado);
+        if(!estados.count(estado)) throw domain_error ("Estado no encontrado");
+        tEstado &estadoBuscado = estados.at(estado);
         estadoBuscado.votosPartido[partido] += num_votos;
         if (estadoBuscado.votosPartido[partido] > estadoBuscado.votosPartido[estadoBuscado.ganador]) {
             string antiguo_ganador = estadoBuscado.ganador;
@@ -39,7 +41,10 @@ public:
 
 
     string ganador_en(const string &estado) const {
-        return buscar_estado(estado).ganador;
+        if(estados.count(estado)) {
+            return estados.at(estado).ganador;
+
+        } else throw domain_error ("Estado no encontrado");
     }
 
 
@@ -50,7 +55,7 @@ public:
     }
 
 private:
-    typedef struct tEstado {
+    struct tEstado {
         string ganador;
         int comisarios;
         unordered_map<string, int> votosPartido;
@@ -60,22 +65,9 @@ private:
     map<string, int> partidos;
 
 
-    tEstado &buscar_estado(const string &nombre) {
-        auto it = estados.find(nombre);
-        if (it == estados.end()) {
-            throw domain_error("Estado no encontrado");
-        }
-        return it->second;
-    }
 
 
-    const tEstado &buscar_estado(const string &nombre) const {
-        auto it = estados.find(nombre);
-        if (it == estados.end()) {
-            throw domain_error("Estado no encontrado");
-        }
-        return it->second;
-    }
+
 
 
 };

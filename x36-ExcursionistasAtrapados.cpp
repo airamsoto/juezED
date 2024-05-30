@@ -110,14 +110,19 @@ using namespace std;
 pair<int, int> excursionistas(const BinTree<int> &t) {
     if(t.empty()) return {0,0};
     else {
-        auto[equiposIzq, maxIzq] = excursionistas(t.left());
-        auto[equiposDer, maxDer] = excursionistas(t.right());
-        if (equiposIzq == 0 && equiposDer == 0) {
-                if(t.root() == 0) return {0, 0};
-                else return {1, t.root()};
-        } else return {equiposIzq+equiposDer, max(maxDer, maxIzq)+t.root()};
+        auto [equiposrescateIzq, maxGrupoIzq] = excursionistas(t.left());
+        auto [equiposrescateDer, maxGrupoDer] = excursionistas(t.right());
+        int grupos = equiposrescateDer + equiposrescateIzq;
+        int maxim = max(maxGrupoDer, maxGrupoIzq);
+        if(grupos == 0) {
+            if(t.root() == 0) return {0,0};
+            else return {1, t.root()};
 
+        } else {
+            return {grupos, maxim + t.root()};
+        }
     }
+
 }
 
 
